@@ -6499,6 +6499,7 @@ print(f"Mejor distancia: {mejor_distancia}")
 - **Resultados Finales:** La mejor ruta encontrada y su distancia total son impresas, demostrando la eficacia del algoritmo en encontrar una solución óptima para la optimización de redes.
 
 Estos ejemplos ilustran cómo la optimización por colonia de hormigas puede resolver problemas complejos de rutas y redes, proporcionando soluciones eficientes y de alta calidad mediante la emulación de los comportamientos naturales de las hormigas.
+
 ---
 
 #### 

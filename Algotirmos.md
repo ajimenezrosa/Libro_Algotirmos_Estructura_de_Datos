@@ -3642,3 +3642,554 @@ En resumen, los algoritmos en grafos son herramientas esenciales para la resoluc
 - **DFS:** Depth-First Search (Búsqueda en Profundidad)
 - **BFS:** Breadth-First Search (Búsqueda en Amplitud)
 - **MST:** Minimum Spanning Tree (Árbol de Expansión Mínima)
+
+# 
+
+
+### Capítulo 8: Complejidad Algorítmica
+
+La complejidad algorítmica es un concepto fundamental en la informática, ya que permite evaluar la eficiencia de los algoritmos en términos de tiempo y espacio. En este capítulo, exploraremos conceptos clave como la notación Big O, el análisis de la eficiencia de los algoritmos y los casos mejor, promedio y peor.
+
+---
+
+### Notación Big O
+
+La notación Big O es una forma de describir la complejidad de un algoritmo en términos de su comportamiento asintótico. Proporciona una medida de cómo crece el tiempo de ejecución o el uso de memoria de un algoritmo a medida que aumenta el tamaño de la entrada.
+
+#### Definición y Propósito
+
+1. **Definición:**
+   La notación Big O se utiliza para describir la complejidad temporal y espacial de un algoritmo en términos de su comportamiento asintótico. Se centra en el crecimiento del tiempo de ejecución o del uso de memoria a medida que el tamaño de la entrada (n) se incrementa.
+
+2. **Propósito:**
+   El propósito de la notación Big O es proporcionar una forma estandarizada de comparar la eficiencia de diferentes algoritmos, permitiendo a los desarrolladores seleccionar el más adecuado para una tarea específica.
+
+#### Ejemplos Comunes de Notación Big O
+
+- **O(1):** Tiempo constante.
+  ```python
+  def acceso_directo(lista, indice):
+      return lista[indice]
+  ```
+  Este ejemplo muestra un acceso directo a un elemento de una lista por su índice, lo cual toma tiempo constante O(1).
+
+- **O(n):** Tiempo lineal.
+  ```python
+  def suma_lista(lista):
+      suma = 0
+      for elemento in lista:
+          suma += elemento
+      return suma
+  ```
+  Este ejemplo muestra la suma de los elementos de una lista, lo cual toma tiempo lineal O(n) porque debe recorrer toda la lista.
+
+- **O(n^2):** Tiempo cuadrático.
+  ```python
+  def burbuja(lista):
+      n = len(lista)
+      for i in range(n):
+          for j in range(0, n-i-1):
+              if lista[j] > lista[j+1]:
+                  lista[j], lista[j+1] = lista[j+1], lista[j]
+      return lista
+  ```
+  Este ejemplo muestra el algoritmo de ordenamiento de burbuja, que tiene una complejidad cuadrática O(n^2) debido a los dos bucles anidados.
+
+---
+
+### Análisis de la Eficiencia de los Algoritmos
+
+El análisis de la eficiencia de los algoritmos implica evaluar el tiempo de ejecución y el uso de memoria de un algoritmo. Este análisis se puede realizar de manera teórica y empírica.
+
+#### Análisis Teórico
+
+1. **Complejidad Temporal:**
+   La complejidad temporal mide el tiempo de ejecución de un algoritmo en función del tamaño de la entrada (n). Se expresa comúnmente usando la notación Big O.
+
+2. **Complejidad Espacial:**
+   La complejidad espacial mide la cantidad de memoria que un algoritmo utiliza en función del tamaño de la entrada (n). También se expresa usando la notación Big O.
+
+#### Análisis Empírico
+
+1. **Medición del Tiempo de Ejecución:**
+   La medición del tiempo de ejecución de un algoritmo puede realizarse empíricamente midiendo el tiempo que tarda en ejecutarse con entradas de diferentes tamaños.
+
+   ```python
+   import time
+
+   def medir_tiempo(funcion, *args):
+       inicio = time.time()
+       funcion(*args)
+       fin = time.time()
+       return fin - inicio
+   ```
+
+2. **Ejemplo de Medición del Tiempo de Ejecución:**
+   ```python
+   def ejemplo_burbuja(lista):
+       n = len(lista)
+       for i in range(n):
+           for j in range(0, n-i-1):
+               if lista[j] > lista[j+1]:
+                   lista[j], lista[j+1] = lista[j+1], lista[j]
+       return lista
+
+   lista_prueba = [5, 2, 9, 1, 5, 6]
+   tiempo_ejecucion = medir_tiempo(ejemplo_burbuja, lista_prueba)
+   print(f"Tiempo de ejecución: {tiempo_ejecucion} segundos")
+   ```
+
+---
+
+### Casos Mejor, Promedio y Peor
+
+El análisis de la complejidad de un algoritmo debe considerar diferentes escenarios en los que puede ejecutarse: el mejor caso, el caso promedio y el peor caso.
+
+#### Definición de Casos
+
+1. **Mejor Caso:**
+   El mejor caso es el escenario en el que el algoritmo se ejecuta en el menor tiempo posible. Este caso generalmente no es muy útil para la comparación de algoritmos, ya que rara vez ocurre en la práctica.
+
+2. **Caso Promedio:**
+   El caso promedio es el escenario en el que se espera que el algoritmo se ejecute en un tiempo promedio, considerando todas las posibles entradas. Este es el caso más útil para la comparación de algoritmos.
+
+3. **Peor Caso:**
+   El peor caso es el escenario en el que el algoritmo se ejecuta en el mayor tiempo posible. Este caso es importante para garantizar que el algoritmo no tendrá un rendimiento inaceptable bajo ninguna circunstancia.
+
+#### Ejemplos de Análisis de Casos
+
+- **Ordenamiento de Burbuja:**
+  - Mejor Caso: O(n) (cuando la lista ya está ordenada)
+  - Caso Promedio: O(n^2)
+  - Peor Caso: O(n^2) (cuando la lista está en orden inverso)
+
+  ```python
+  def burbuja(lista):
+      n = len(lista)
+      for i in range(n):
+          intercambiado = False
+          for j in range(0, n-i-1):
+              if lista[j] > lista[j+1]:
+                  lista[j], lista[j+1] = lista[j+1], lista[j]
+                  intercambiado = True
+          if not intercambiado:
+              break
+      return lista
+  ```
+
+- **Búsqueda Lineal:**
+  - Mejor Caso: O(1) (cuando el elemento está en la primera posición)
+  - Caso Promedio: O(n/2) ≈ O(n)
+  - Peor Caso: O(n) (cuando el elemento está en la última posición o no está en la lista)
+
+  ```python
+  def busqueda_lineal(lista, objetivo):
+      for i, elemento en enumerate(lista):
+          if elemento == objetivo:
+              return i
+      return -1
+  ```
+
+---
+
+### Ejercicios
+
+1. **Implementar y analizar la complejidad temporal de un algoritmo de búsqueda binaria:**
+   ```python
+   def busqueda_binaria(lista, objetivo):
+       izquierda, derecha = 0, len(lista) - 1
+       while izquierda <= derecha:
+           medio = (izquierda + derecha) // 2
+           if lista[medio] == objetivo:
+               return medio
+           elif lista[medio] < objetivo:
+               izquierda = medio + 1
+           else:
+               derecha = medio - 1
+       return -1
+   ```
+
+2. **Implementar un algoritmo de ordenamiento por inserción y analizar su complejidad:**
+   ```python
+   def ordenamiento_insercion(lista):
+       for i en range(1, len(lista)):
+           clave = lista[i]
+           j = i - 1
+           while j >= 0 and clave < lista[j]:
+               lista[j + 1] = lista[j]
+               j -= 1
+           lista[j + 1] = clave
+       return lista
+   ```
+
+3. **Comparar la complejidad de tiempo de diferentes algoritmos de búsqueda:**
+   ```python
+   import time
+
+   def medir_tiempo(funcion, *args):
+       inicio = time.time()
+       funcion(*args)
+       fin = time.time()
+       return fin - inicio
+
+   lista_prueba = list(range(1000))
+   print("Tiempo de búsqueda lineal:", medir_tiempo(busqueda_lineal, lista_prueba, 999))
+   print("Tiempo de búsqueda binaria:", medir_tiempo(busqueda_binaria, lista_prueba, 999))
+   ```
+
+4. **Implementar y analizar la complejidad de un algoritmo de búsqueda en profundidad (DFS):**
+   ```python
+   def dfs(grafo, inicio, visitados=None):
+       if visitados es None:
+           visitados = set()
+       visitados.add(inicio)
+       for vecino en grafo[inicio]:
+           if vecino not en visitados:
+               dfs(grafo, vecino, visitados)
+       return visitados
+   ```
+
+5. **Implementar un algoritmo de ordenamiento rápido (QuickSort) y analizar su complejidad:**
+   ```python
+   def quicksort(lista):
+       if len(lista) <= 1:
+           return lista
+       pivote = lista[len(lista) // 2]
+       izquierda = [x for x en lista si x < pivote]
+       centro = [x for x en lista si x == pivote]
+       derecha = [x for x en lista si x > pivote]
+       return quicksort(izquierda) + centro + quicksort(derecha)
+   ```
+
+6. **Analizar la complejidad espacial de un algoritmo de ordenamiento por mezcla (MergeSort):**
+   ```python
+   def mergesort(lista):
+       if len(lista) <= 1:
+           return lista
+       medio = len(lista) // 2
+       izquierda = mergesort(lista[:medio])
+      
+
+ derecha = mergesort(lista[medio:])
+       return merge(izquierda, derecha)
+
+   def merge(izquierda, derecha):
+       resultado = []
+       i, j = 0, 0
+       while i < len(izquierda) and j < len(derecha):
+           if izquierda[i] < derecha[j]:
+               resultado.append(izquierda[i])
+               i += 1
+           else:
+               resultado.append(derecha[j])
+               j += 1
+       resultado.extend(izquierda[i:])
+       resultado.extend(derecha[j:])
+       return resultado
+   ```
+
+7. **Implementar y analizar la complejidad de un algoritmo de búsqueda en amplitud (BFS):**
+   ```python
+   from collections import deque
+
+   def bfs(grafo, inicio):
+       visitados = set()
+       cola = deque([inicio])
+       visitados.add(inicio)
+       while cola:
+           vertice = cola.popleft()
+           for vecino en grafo[vertice]:
+               if vecino not en visitados:
+                   visitados.add(vecino)
+                   cola.append(vecino)
+       return visitados
+   ```
+
+8. **Calcular el tiempo de ejecución promedio de un algoritmo de ordenamiento por selección:**
+   ```python
+   def ordenamiento_seleccion(lista):
+       for i en range(len(lista)):
+           min_idx = i
+           for j en range(i+1, len(lista)):
+               if lista[min_idx] > lista[j]:
+                   min_idx = j
+           lista[i], lista[min_idx] = lista[min_idx], lista[i]
+       return lista
+
+   import random
+
+   lista_prueba = [random.randint(0, 1000) for _ en range(1000)]
+   print("Tiempo de ejecución:", medir_tiempo(ordenamiento_seleccion, lista_prueba))
+   ```
+
+9. **Implementar un algoritmo de búsqueda en profundidad iterativo y analizar su complejidad:**
+   ```python
+   def dfs_iterativo(grafo, inicio):
+       visitados = set()
+       pila = [inicio]
+       while pila:
+           vertice = pila.pop()
+           if vertice not en visitados:
+               visitados.add(vertice)
+               pila.extend(grafo[vertice] - visitados)
+       return visitados
+   ```
+
+10. **Analizar la complejidad temporal y espacial de un algoritmo de ordenamiento por montículo (HeapSort):**
+    ```python
+    def heapsort(lista):
+        def heapify(lista, n, i):
+            mayor = i
+            izquierda = 2 * i + 1
+            derecha = 2 * i + 2
+            if izquierda < n and lista[i] < lista[izquierda]:
+                mayor = izquierda
+            if derecha < n and lista[mayor] < lista[derecha]:
+                mayor = derecha
+            if mayor != i:
+                lista[i], lista[mayor] = lista[mayor], lista[i]
+                heapify(lista, n, mayor)
+
+        n = len(lista)
+        for i en range(n // 2 - 1, -1, -1):
+            heapify(lista, n, i)
+        for i en range(n-1, 0, -1):
+            lista[i], lista[0] = lista[0], lista[i]
+            heapify(lista, i, 0)
+        return lista
+    ```
+
+11. **Implementar un algoritmo de ordenamiento por conteo (Counting Sort) y analizar su complejidad:**
+    ```python
+    def counting_sort(lista):
+        max_valor = max(lista)
+        conteo = [0] * (max_valor + 1)
+        for elemento en lista:
+            conteo[elemento] += 1
+        indice = 0
+        for i en range(len(conteo)):
+            while conteo[i] > 0:
+                lista[indice] = i
+                indice += 1
+                conteo[i] -= 1
+        return lista
+    ```
+
+12. **Calcular la complejidad temporal y espacial de un algoritmo de búsqueda exponencial:**
+    ```python
+    def busqueda_exponencial(lista, objetivo):
+        if lista[0] == objetivo:
+            return 0
+        i = 1
+        while i < len(lista) and lista[i] <= objetivo:
+            i = i * 2
+        return busqueda_binaria(lista[:min(i, len(lista))], objetivo)
+    ```
+
+13. **Comparar la complejidad de diferentes algoritmos de ordenamiento en listas pequeñas:**
+    ```python
+    lista_prueba = [5, 2, 9, 1, 5, 6]
+    print("Burbuja:", medir_tiempo(burbuja, lista_prueba))
+    print("Inserción:", medir_tiempo(ordenamiento_insercion, lista_prueba))
+    print("Selección:", medir_tiempo(ordenamiento_seleccion, lista_prueba))
+    ```
+
+14. **Implementar un algoritmo de búsqueda ternaria y analizar su complejidad:**
+    ```python
+    def busqueda_ternaria(lista, objetivo):
+        def ternaria(lista, izquierda, derecha, objetivo):
+            if derecha >= izquierda:
+                mid1 = izquierda + (derecha - izquierda) // 3
+                mid2 = derecha - (derecha - izquierda) // 3
+                if lista[mid1] == objetivo:
+                    return mid1
+                if lista[mid2] == objetivo:
+                    return mid2
+                if objetivo < lista[mid1]:
+                    return ternaria(lista, izquierda, mid1-1, objetivo)
+                elif objetivo > lista[mid2]:
+                    return ternaria(lista, mid2+1, derecha, objetivo)
+                else:
+                    return ternaria(lista, mid1+1, mid2-1, objetivo)
+            return -1
+        return ternaria(lista, 0, len(lista)-1, objetivo)
+    ```
+
+15. **Analizar la complejidad de un algoritmo de búsqueda de interpolación:**
+    ```python
+    def busqueda_interpolacion(lista, objetivo):
+        izquierda = 0
+        derecha = len(lista) - 1
+        while izquierda <= derecha and objetivo >= lista[izquierda] and objetivo <= lista[derecha]:
+            if izquierda == derecha:
+                if lista[izquierda] == objetivo:
+                    return izquierda
+                return -1
+            pos = izquierda + ((derecha - izquierda) // (lista[derecha] - lista[izquierda]) * (objetivo - lista[izquierda]))
+            if lista[pos] == objetivo:
+                return pos
+            if lista[pos] < objetivo:
+                izquierda = pos + 1
+            else:
+                derecha = pos - 1
+        return -1
+    ```
+
+---
+
+### Examen: Complejidad Algorítmica
+
+1. **¿Qué describe la notación Big O?**
+    - A) El mejor caso de un algoritmo
+    - B) La eficiencia asintótica de un algoritmo
+    - C) El uso de memoria de un programa
+    - D) La facilidad de implementación de un algoritmo
+    **Respuesta:** B
+    **Justificación:** La notación Big O describe la eficiencia asintótica de un algoritmo en términos de su crecimiento en tiempo de ejecución o uso de memoria a medida que aumenta el tamaño de la entrada.
+
+2. **¿Cuál es la complejidad temporal de la búsqueda binaria en el peor caso?**
+    - A) O(1)
+    - B) O(n)
+    - C) O(log n)
+    - D) O(n^2)
+    **Respuesta:** C
+    **Justificación:** La búsqueda binaria tiene una complejidad temporal de O(log n) en el peor caso, ya que divide la lista a la mitad en cada paso.
+
+3. **¿Qué algoritmo tiene una complejidad temporal de O(n^2) en el peor caso?**
+    - A) Búsqueda binaria
+    - B) Ordenamiento de burbuja
+    - C) Ordenamiento rápido (QuickSort)
+    - D) Ordenamiento por mezcla (MergeSort)
+    **Respuesta:** B
+    **Justificación:** El ordenamiento de burbuja tiene una complejidad temporal de O(n^2) en el peor caso debido a los dos bucles anidados.
+
+4. **¿Cuál es la complejidad espacial del algoritmo de ordenamiento por mezcla (MergeSort)?**
+    - A) O(1)
+    - B) O(n)
+    - C) O(log n)
+    - D) O(n^2)
+    **Respuesta:** B
+    **Justificación:** El algoritmo de ordenamiento por mezcla (MergeSort) tiene una complejidad espacial de O(n) porque requiere espacio adicional para las sublistas.
+
+5. **¿Cuál es la complejidad temporal del algoritmo de búsqueda lineal en el mejor caso?**
+    - A) O(1)
+    - B) O(n)
+    - C) O(log n)
+    - D) O(n^2)
+    **Respuesta:** A
+    **Justificación:** La búsqueda lineal tiene una complejidad temporal de O(1) en el mejor caso, cuando el elemento a buscar está en la primera posición de la lista.
+
+6. **¿Qué mide la complejidad espacial de un algoritmo?**
+    - A) El tiempo de ejecución
+    - B) La cantidad de memoria utilizada
+    - C) La facilidad de implementación
+    - D) El número de instrucciones ejecutadas
+    **Respuesta:** B
+    **Justificación:** La complejidad espacial mide la cantidad de memoria que un algoritmo utiliza en función del tamaño de la entrada.
+
+7. **¿Qué
+
+ caso es el más útil para comparar la eficiencia de diferentes algoritmos?**
+    - A) Mejor caso
+    - B) Peor caso
+    - C) Caso promedio
+    - D) Caso excepcional
+    **Respuesta:** C
+    **Justificación:** El caso promedio es el más útil para comparar la eficiencia de diferentes algoritmos, ya que representa un escenario típico de ejecución.
+
+8. **¿Cuál es la complejidad temporal del algoritmo de ordenamiento por selección en el peor caso?**
+    - A) O(1)
+    - B) O(n)
+    - C) O(log n)
+    - D) O(n^2)
+    **Respuesta:** D
+    **Justificación:** El algoritmo de ordenamiento por selección tiene una complejidad temporal de O(n^2) en el peor caso debido a los dos bucles anidados.
+
+9. **¿Qué describe la notación Big O de un algoritmo?**
+    - A) El tiempo de ejecución exacto
+    - B) El comportamiento de tiempo asintótico
+    - C) El espacio utilizado en el mejor caso
+    - D) El número de comparaciones realizadas
+    **Respuesta:** B
+    **Justificación:** La notación Big O describe el comportamiento de tiempo asintótico de un algoritmo, es decir, cómo crece el tiempo de ejecución a medida que aumenta el tamaño de la entrada.
+
+10. **¿Cuál es la complejidad temporal del algoritmo de búsqueda en profundidad (DFS) en un grafo con V nodos y E aristas?**
+    - A) O(V + E)
+    - B) O(V^2)
+    - C) O(log V)
+    - D) O(E^2)
+    **Respuesta:** A
+    **Justificación:** La búsqueda en profundidad (DFS) tiene una complejidad temporal de O(V + E), donde V es el número de nodos y E es el número de aristas.
+
+11. **¿Cuál es la complejidad temporal del algoritmo de ordenamiento rápido (QuickSort) en el mejor caso?**
+    - A) O(1)
+    - B) O(n)
+    - C) O(n log n)
+    - D) O(n^2)
+    **Respuesta:** C
+    **Justificación:** El algoritmo de ordenamiento rápido (QuickSort) tiene una complejidad temporal de O(n log n) en el mejor caso debido a su estrategia de dividir y conquistar.
+
+12. **¿Qué algoritmo de ordenamiento es más eficiente para listas pequeñas y casi ordenadas?**
+    - A) Ordenamiento de burbuja
+    - B) Ordenamiento por inserción
+    - C) Ordenamiento por selección
+    - D) Ordenamiento rápido (QuickSort)
+    **Respuesta:** B
+    **Justificación:** El ordenamiento por inserción es más eficiente para listas pequeñas y casi ordenadas debido a su simplicidad y menor número de movimientos.
+
+13. **¿Qué tipo de complejidad es importante considerar para garantizar que un algoritmo no tenga un rendimiento inaceptable bajo ninguna circunstancia?**
+    - A) Complejidad del mejor caso
+    - B) Complejidad del caso promedio
+    - C) Complejidad del peor caso
+    - D) Complejidad espacial
+    **Respuesta:** C
+    **Justificación:** La complejidad del peor caso es importante para garantizar que un algoritmo no tenga un rendimiento inaceptable bajo ninguna circunstancia.
+
+14. **¿Cuál es la complejidad temporal del algoritmo de ordenamiento por inserción en el peor caso?**
+    - A) O(1)
+    - B) O(n)
+    - C) O(log n)
+    - D) O(n^2)
+    **Respuesta:** D
+    **Justificación:** El algoritmo de ordenamiento por inserción tiene una complejidad temporal de O(n^2) en el peor caso debido a los movimientos necesarios para insertar cada elemento en su lugar correcto.
+
+15. **¿Qué algoritmo de búsqueda tiene una complejidad temporal de O(n) en el peor caso?**
+    - A) Búsqueda binaria
+    - B) Búsqueda lineal
+    - C) Búsqueda ternaria
+    - D) Búsqueda de interpolación
+    **Respuesta:** B
+    **Justificación:** La búsqueda lineal tiene una complejidad temporal de O(n) en el peor caso, ya que puede necesitar revisar todos los elementos de la lista.
+
+---
+
+### Cierre del Capítulo
+
+La comprensión de la complejidad algorítmica es esencial para diseñar y seleccionar algoritmos eficientes. Al evaluar la complejidad temporal y espacial, los desarrolladores pueden tomar decisiones informadas sobre qué algoritmos utilizar para resolver problemas específicos de manera óptima.
+
+**Importancia de la Complejidad Algorítmica:**
+
+1. **Eficiencia en la Solución de Problemas:**
+   La complejidad algorítmica permite evaluar y comparar la eficiencia de diferentes algoritmos, asegurando que se seleccionen los más adecuados para resolver problemas específicos de manera eficiente.
+
+2. **Optimización de Recursos:**
+   Al analizar la complejidad espacial y temporal, los desarrolladores pueden optimizar el uso de recursos como el tiempo de ejecución y la memoria, mejorando el rendimiento general de las aplicaciones.
+
+3. **Desarrollo de Algoritmos Robustas:**
+   Comprender la complejidad algorítmica ayuda a diseñar algoritmos que funcionen bien en una variedad de escenarios, garantizando un rendimiento consistente y predecible.
+
+**Ejemplos de la Vida Cotidiana:**
+
+1. **Búsqueda en Bases de Datos:**
+   Evaluar la complejidad temporal de diferentes algoritmos de búsqueda puede ayudar a seleccionar el más eficiente para buscar registros en una base de datos grande, optimizando el tiempo de respuesta.
+
+2. **Ordenamiento de Datos:**
+   Seleccionar el algoritmo de ordenamiento adecuado para ordenar listas de productos en una tienda en línea puede mejorar significativamente la experiencia del usuario, asegurando tiempos de carga rápidos.
+
+3. **Rutas de Navegación:**
+   Utilizar algoritmos eficientes como Dijkstra para encontrar rutas óptimas en aplicaciones de navegación puede reducir el tiempo de viaje y el consumo de combustible.
+
+En resumen, la complejidad algorítmica es una herramienta fundamental para diseñar, evaluar y optimizar algoritmos. La comprensión y el uso adecuado de los conceptos de complejidad permiten a los desarrolladores crear soluciones eficientes y robustas, mejorando significativamente la capacidad de resolver problemas en una amplia variedad de campos.
+
+# 
+

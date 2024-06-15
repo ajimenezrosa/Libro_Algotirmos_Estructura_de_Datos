@@ -5,55 +5,120 @@
 **Autor: José Alejandro Jiménez Rosa**
 
 #### Índice
+### Algoritmos y Estructuras de Datos con Python
+**Autor: José Alejandro Jiménez Rosa**
 
-1. Introducción a los Algoritmos y Estructuras de Datos
+1. **Introducción a los Algoritmos y Estructuras de Datos**
     - ¿Qué son los algoritmos?
     - ¿Qué son las estructuras de datos?
     - Importancia de los algoritmos y estructuras de datos en la programación
     - Python como herramienta para el estudio de algoritmos y estructuras de datos
 
-2. Conceptos Básicos de Python
+2. **Conceptos Básicos de Python**
     - Sintaxis básica
     - Tipos de datos
     - Estructuras de control
     - Funciones y módulos
 
-3. Estructuras de Datos Lineales
+3. **Estructuras de Datos Lineales**
     - Listas
     - Pilas (Stacks)
     - Colas (Queues)
     - Listas enlazadas
 
-4. Estructuras de Datos No Lineales
+4. **Estructuras de Datos No Lineales**
     - Árboles
     - Grafos
 
-5. Algoritmos de Búsqueda
+5. **Algoritmos de Búsqueda**
     - Búsqueda lineal
     - Búsqueda binaria
 
-6. Algoritmos de Ordenamiento
+6. **Algoritmos de Ordenamiento**
     - Ordenamiento de burbuja
     - Ordenamiento por inserción
     - Ordenamiento por selección
     - Ordenamiento rápido (QuickSort)
     - Ordenamiento por mezcla (MergeSort)
 
-7. Algoritmos en Grafos
+7. **Algoritmos en Grafos**
     - Búsqueda en profundidad (DFS)
     - Búsqueda en amplitud (BFS)
     - Algoritmo de Dijkstra
     - Algoritmo de Kruskal
     - Algoritmo de Prim
 
-8. Complejidad Algorítmica
+8. **Complejidad Algorítmica**
     - Notación Big O
     - Análisis de la eficiencia de los algoritmos
     - Casos mejor, promedio y peor
 
-9. Aplicaciones Prácticas
+9. **Aplicaciones Prácticas**
     - Aplicaciones en la vida real
     - Resolución de problemas complejos con algoritmos y estructuras de datos
+
+10. **Algoritmos de Predicción**
+    - Introducción a los algoritmos de predicción
+    - Regresión Lineal
+    - Árboles de Decisión
+    - Redes Neuronales
+    - Máquinas de Soporte Vectorial (SVM)
+    - Modelos de Series Temporales
+    - Ejercicios y Examen del Capítulo
+    - Cierre del Capítulo
+
+11. **Algoritmos de Optimización**
+    - Programación Lineal
+    - Algoritmos Genéticos
+    - Optimización por Colonia de Hormigas
+    - Algoritmos de Enfriamiento Simulado
+
+12. **Algoritmos Probabilísticos y Heurísticos**
+    - Algoritmos de Monte Carlo
+    - Algoritmos Heurísticos
+    - Algoritmos Basados en Búsqueda Aleatoria
+
+13. **Estructuras de Datos No Convencionales**
+    - Tries (Árboles de Prefijos)
+    - Tablas de Hash (Hash Tables)
+    - Heap (Montículos)
+
+14. **Algoritmos y Estructuras de Datos Distribuidos**
+    - MapReduce
+    - Bases de Datos NoSQL
+    - Sistemas de Archivos Distribuidos
+
+15. **Algoritmos de Procesamiento de Lenguaje Natural (NLP)**
+    - Tokenización y Análisis Léxico
+    - Modelos de Lenguaje y Embeddings
+    - Análisis de Sentimientos
+
+16. **Introducción a Machine Learning**
+    - Conceptos Básicos
+    - Algoritmos Clásicos
+    - Evaluación de Modelos
+
+17. **Proyectos Prácticos**
+    - Implementación de un Sistema de Recomendación
+    - Desarrollo de un Motor de Búsqueda Simple
+    - Análisis de Datos en Tiempo Real
+
+18. **Buenas Prácticas de Programación**
+    - Patrones de Diseño
+    - Pruebas y Debugging
+    - Optimización de Código
+
+19. **Herramientas y Bibliotecas Complementarias**
+    - Bibliotecas Populares en Python
+    - Introducción a TensorFlow y PyTorch
+    - Uso de Jupyter Notebooks
+
+20. **Apéndices**
+    - Glosario de Términos
+    - Referencias y Lecturas Adicionales
+    - Ejemplos de Código
+
+
 
 #### Introducción a los Capítulos
 

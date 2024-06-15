@@ -1796,6 +1796,7 @@ Un grafo es una estructura de datos que consiste en un conjunto de nodos (o vér
     - B) Pila
     - C) Árbol
     - D) Cola
+ 
     **Respuesta:** C
     **Justificación:** Un árbol es una estructura de datos jerárquica que se utiliza para representar relaciones jerárquicas.
 
@@ -1804,6 +1805,7 @@ Un grafo es una estructura de datos que consiste en un conjunto de nodos (o vér
     - B) 2, 1, 3
     - C) 2, 3, 1
     - D) 1, 3, 2
+
     **Respuesta:** A
     **Justificación:** El recorrido en orden de un árbol binario visita los nodos en el orden: izquierda, raíz, derecha.
 
@@ -1812,6 +1814,7 @@ Un grafo es una estructura de datos que consiste en un conjunto de nodos (o vér
     - B) Grafo
     - C) Árbol
     - D) Cola
+ 
     **Respuesta:** B
     **Justificación:** Un grafo es una estructura de datos que se utiliza para representar redes complejas y relaciones entre nodos.
 
@@ -1820,6 +1823,7 @@ Un grafo es una estructura de datos que consiste en un conjunto de nodos (o vér
     - B) Mediante un nodo adicional
     - C) Mediante una arista bidireccional
     - D) Mediante un bucle
+ 
     **Respuesta:** C
     **Justificación:** En un grafo no dirigido, una conexión entre dos nodos se representa mediante una arista bidireccional.
 
@@ -1828,6 +1832,7 @@ Un grafo es una estructura de datos que consiste en un conjunto de nodos (o vér
     - B) O(log n)
     - C) O(n)
     - D) O(n log n)
+ 
     **Respuesta:** B
     **Justificación:** Insertar un valor en un árbol binario de búsqueda balanceado tiene una complejidad temporal de O(log n) en promedio.
 
@@ -1836,6 +1841,7 @@ Un grafo es una estructura de datos que consiste en un conjunto de nodos (o vér
     - B) Recorrido en preorden
     - C) Recorrido en postorden
     - D) Recorrido en nivel
+  
     **Respuesta:** B
     **Justificación:** En el recorrido en preorden, se visita primero la raíz, luego el subárbol izquierdo y finalmente el subárbol derecho.
 
@@ -1844,6 +1850,7 @@ Un grafo es una estructura de datos que consiste en un conjunto de nodos (o vér
     - B) La dirección de las aristas
     - C) El peso de las aristas
     - D) La presencia de ciclos
+  
     **Respuesta:** B
     **Justificación:** En un grafo dirigido, las aristas tienen una dirección, mientras que en un grafo no dirigido, las aristas no tienen dirección.
 
@@ -1852,6 +1859,7 @@ Un grafo es una estructura de datos que consiste en un conjunto de nodos (o vér
     - B) Cola
     - C) Lista
     - D) Árbol
+  
     **Respuesta:** B
     **Justificación:** Para realizar una búsqueda en amplitud (BFS) en un grafo se utiliza una cola.
 
@@ -1860,7 +1868,8 @@ Un grafo es una estructura de datos que consiste en un conjunto de nodos (o vér
     - B) append()
     - C) insert()
     - D) agregar()
-    **Respuesta:** D
+  
+   **Respuesta:** D
     **Justificación:** El método `agregar()` se utiliza comúnmente para insertar un nodo en un árbol binario de búsqueda en Python.
 
 10. **¿Cuál es la principal aplicación de los grafos en las redes sociales?**
@@ -1868,6 +1877,7 @@ Un grafo es una estructura de datos que consiste en un conjunto de nodos (o vér
     - B) Representar conexiones de amistad
     - C) Representar tareas pendientes
     - D) Representar historial de navegación
+   
     **Respuesta:** B
     **Justificación:** Los grafos en las redes sociales se utilizan principalmente para representar conexiones de amistad entre usuarios.
 
@@ -1876,6 +1886,7 @@ Un grafo es una estructura de datos que consiste en un conjunto de nodos (o vér
     - B) Algoritmo DFS
     - C) Algoritmo BFS
     - D) Algoritmo de Kruskal
+  
     **Respuesta:** A
     **Justificación:** El algoritmo de Dijkstra se utiliza para encontrar el camino más corto en un grafo ponderado.
 
@@ -1884,6 +1895,7 @@ Un grafo es una estructura de datos que consiste en un conjunto de nodos (o vér
     - B) O(log n)
     - C) O(n)
     - D) O(n log n)
+   
     **Respuesta:** C
     **Justificación:** Recorrer un árbol binario en orden tiene una complejidad temporal de O(n) porque cada nodo se visita una vez.
 
@@ -1892,6 +1904,7 @@ Un grafo es una estructura de datos que consiste en un conjunto de nodos (o vér
     - B) Pila
     - C) Árbol
     - D) Cola
+   
     **Respuesta:** C
     **Justificación:** Un árbol es más adecuado para implementar un árbol de expresión, donde cada nodo representa un operador o un operando.
 
@@ -1900,7 +1913,8 @@ Un grafo es una estructura de datos que consiste en un conjunto de nodos (o vér
     - B) Pila
     - C) Árbol
     - D) Grafo
-    **Respuesta:** D
+   
+    **Respuesta:** D    
     **Justificación:** Un grafo es adecuado para detectar ciclos, y se pueden usar técnicas como DFS para la detección de ciclos.
 
 15. **¿Cuál es la principal ventaja de usar un árbol binario de búsqueda (BST)?**
@@ -1909,6 +1923,7 @@ Un grafo es una estructura de datos que consiste en un conjunto de nodos (o vér
     - C) Ordenamiento automático de elementos
     - D) Todas las anteriores
     **Respuesta:** D
+    
     **Justificación:** Un árbol binario de búsqueda (BST) ofrece inserción rápida, búsqueda eficiente y mantiene los elementos ordenados automáticamente.
 
 ---
@@ -1939,3 +1954,435 @@ Las estructuras de datos no lineales son fundamentales para resolver problemas c
    - **Sistemas de Transporte:** Las rutas de autobuses y trenes se representan como grafos, donde las estaciones son nodos y las rutas son aristas.
 
 En resumen, las estructuras de datos no lineales son herramientas poderosas que permiten a los programadores representar y manipular datos complejos de manera eficiente. Su comprensión y uso adecuado son esenciales para el desarrollo de aplicaciones robustas y escalables, mejorando significativamente la capacidad de resolver problemas complejos en diversos campos.
+
+# 
+
+
+### Capítulo 5: Algoritmos de Búsqueda
+
+Los algoritmos de búsqueda son fundamentales para localizar elementos dentro de una estructura de datos. Este capítulo cubre dos algoritmos básicos de búsqueda: la búsqueda lineal y la búsqueda binaria. Comprender estos algoritmos es esencial para realizar operaciones de búsqueda de manera eficiente.
+
+---
+
+### Búsqueda Lineal
+
+La búsqueda lineal es un algoritmo simple que recorre secuencialmente todos los elementos de una lista hasta encontrar el elemento buscado o hasta que todos los elementos hayan sido examinados.
+
+#### Definición y Operaciones Básicas
+
+1. **Definición:**
+   La búsqueda lineal revisa cada elemento de una lista uno por uno hasta encontrar el elemento deseado.
+
+2. **Algoritmo:**
+   ```python
+   def busqueda_lineal(lista, objetivo):
+       for i in range(len(lista)):
+           if lista[i] == objetivo:
+               return i
+       return -1
+   ```
+
+#### Ejemplos de Uso
+
+- **Búsqueda en una lista de números:**
+  ```python
+  numeros = [4, 2, 7, 1, 9, 3]
+  resultado = busqueda_lineal(numeros, 7)
+  print("Índice del elemento 7:", resultado)
+  ```
+
+- **Búsqueda en una lista de cadenas:**
+  ```python
+  nombres = ["Ana", "Luis", "Carlos", "Marta"]
+  resultado = busqueda_lineal(nombres, "Carlos")
+  print("Índice de 'Carlos':", resultado)
+  ```
+
+---
+
+### Búsqueda Binaria
+
+La búsqueda binaria es un algoritmo más eficiente que la búsqueda lineal, pero requiere que la lista esté ordenada. Este algoritmo divide repetidamente la lista a la mitad hasta encontrar el elemento buscado.
+
+#### Definición y Operaciones Básicas
+
+1. **Definición:**
+   La búsqueda binaria funciona dividiendo repetidamente el rango de búsqueda a la mitad.
+
+2. **Algoritmo:**
+   ```python
+   def busqueda_binaria(lista, objetivo):
+       izquierda = 0
+       derecha = len(lista) - 1
+       while izquierda <= derecha:
+           medio = (izquierda + derecha) // 2
+           if lista[medio] == objetivo:
+               return medio
+           elif lista[medio] < objetivo:
+               izquierda = medio + 1
+           else:
+               derecha = medio - 1
+       return -1
+   ```
+
+#### Ejemplos de Uso
+
+- **Búsqueda en una lista de números ordenados:**
+  ```python
+  numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  resultado = busqueda_binaria(numeros, 5)
+  print("Índice del elemento 5:", resultado)
+  ```
+
+- **Búsqueda en una lista de cadenas ordenadas:**
+  ```python
+  nombres = ["Ana", "Carlos", "Luis", "Marta"]
+  resultado = busqueda_binaria(nombres, "Carlos")
+  print("Índice de 'Carlos':", resultado)
+  ```
+
+---
+
+### Ejercicios
+
+1. **Implementar una búsqueda lineal en una lista de números:**
+   ```python
+   def busqueda_lineal(lista, objetivo):
+       for i in range(len(lista)):
+           if lista[i] == objetivo:
+               return i
+       return -1
+
+   numeros = [10, 20, 30, 40, 50]
+   print(busqueda_lineal(numeros, 30))  # Salida: 2
+   ```
+
+2. **Implementar una búsqueda binaria en una lista de números:**
+   ```python
+   def busqueda_binaria(lista, objetivo):
+       izquierda = 0
+       derecha = len(lista) - 1
+       while izquierda <= derecha:
+           medio = (izquierda + derecha) // 2
+           if lista[medio] == objetivo:
+               return medio
+           elif lista[medio] < objetivo:
+               izquierda = medio + 1
+           else:
+               derecha = medio - 1
+       return -1
+
+   numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+   print(busqueda_binaria(numeros, 7))  # Salida: 6
+   ```
+
+3. **Búsqueda lineal en una lista de cadenas:**
+   ```python
+   nombres = ["Ana", "Luis", "Carlos", "Marta"]
+   print(busqueda_lineal(nombres, "Luis"))  # Salida: 1
+   ```
+
+4. **Búsqueda binaria en una lista de cadenas ordenadas:**
+   ```python
+   nombres = ["Ana", "Carlos", "Luis", "Marta"]
+   print(busqueda_binaria(nombres, "Marta"))  # Salida: 3
+   ```
+
+5. **Buscar un número que no está en la lista usando búsqueda lineal:**
+   ```python
+   numeros = [10, 20, 30, 40, 50]
+   print(busqueda_lineal(numeros, 60))  # Salida: -1
+   ```
+
+6. **Buscar un número que no está en la lista usando búsqueda binaria:**
+   ```python
+   numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+   print(busqueda_binaria(numeros, 10))  # Salida: -1
+   ```
+
+7. **Buscar una cadena que no está en la lista usando búsqueda lineal:**
+   ```python
+   nombres = ["Ana", "Luis", "Carlos", "Marta"]
+   print(busqueda_lineal(nombres, "Pedro"))  # Salida: -1
+   ```
+
+8. **Buscar una cadena que no está en la lista usando búsqueda binaria:**
+   ```python
+   nombres = ["Ana", "Carlos", "Luis", "Marta"]
+   print(busqueda_binaria(nombres, "Pedro"))  # Salida: -1
+   ```
+
+9. **Modificar la función de búsqueda binaria para contar el número de comparaciones:**
+   ```python
+   def busqueda_binaria(lista, objetivo):
+       izquierda = 0
+       derecha = len(lista) - 1
+       comparaciones = 0
+       while izquierda <= derecha:
+           medio = (izquierda + derecha) // 2
+           comparaciones += 1
+           if lista[medio] == objetivo:
+               print("Comparaciones:", comparaciones)
+               return medio
+           elif lista[medio] < objetivo:
+               izquierda = medio + 1
+           else:
+               derecha = medio - 1
+       print("Comparaciones:", comparaciones)
+       return -1
+
+   numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+   print(busqueda_binaria(numeros, 5))  # Salida: 4
+   ```
+
+10. **Modificar la función de búsqueda lineal para contar el número de comparaciones:**
+    ```python
+    def busqueda_lineal(lista, objetivo):
+        comparaciones = 0
+        for i in range(len(lista)):
+            comparaciones += 1
+            if lista[i] == objetivo:
+                print("Comparaciones:", comparaciones)
+                return i
+        print("Comparaciones:", comparaciones)
+        return -1
+
+    numeros = [10, 20, 30, 40, 50]
+    print(busqueda_lineal(numeros, 30))  # Salida: 2
+    ```
+
+11. **Buscar el índice de la primera aparición de un elemento usando búsqueda lineal:**
+    ```python
+    def busqueda_lineal_primera(lista, objetivo):
+        for i in range(len(lista)):
+            if lista[i] == objetivo:
+                return i
+        return -1
+
+    numeros = [10, 20, 30, 40, 30]
+    print(busqueda_lineal_primera(numeros, 30))  # Salida: 2
+    ```
+
+12. **Buscar el índice de la última aparición de un elemento usando búsqueda lineal:**
+    ```python
+    def busqueda_lineal_ultima(lista, objetivo):
+        indice = -1
+        for i in range(len(lista)):
+            if lista[i] == objetivo:
+                indice = i
+        return indice
+
+    numeros = [10, 20, 30, 40, 30]
+    print(busqueda_lineal_ultima(numeros, 30))  # Salida: 4
+    ```
+
+13. **Buscar todos los índices de las apariciones de un elemento usando búsqueda lineal:**
+    ```python
+    def busqueda_lineal_todos(lista, objetivo):
+        indices = []
+        for i in range(len(lista)):
+            if lista[i] == objetivo:
+                indices.append(i)
+        return indices
+
+    numeros = [10, 20, 30, 40, 30]
+    print(busqueda_lineal_todos(numeros, 30))  # Salida: [2, 4]
+    ```
+
+14. **Buscar el índice de un elemento en una lista de listas usando búsqueda lineal:**
+    ```python
+    def busqueda_lineal_en_listas(lista_de_listas, objetivo):
+        for i, sublista en enumerate(lista_de_listas):
+            if objetivo in sublista:
+                return i
+
+
+        return -1
+
+    lista_de_listas = [[1, 2], [3, 4], [5, 6]]
+    print(busqueda_lineal_en_listas(lista_de_listas, 4))  # Salida: 1
+    ```
+
+15. **Buscar el índice de un elemento en una lista de listas usando búsqueda binaria (asumiendo listas ordenadas):**
+    ```python
+    def busqueda_binaria_en_listas(lista_de_listas, objetivo):
+        for i, sublista in enumerate(lista_de_listas):
+            if busqueda_binaria(sublista, objetivo) != -1:
+                return i
+        return -1
+
+    lista_de_listas = [[1, 2], [3, 4], [5, 6]]
+    print(busqueda_binaria_en_listas(lista_de_listas, 4))  # Salida: 1
+    ```
+
+---
+
+### Examen: Algoritmos de Búsqueda
+
+1. **¿Cuál es la principal diferencia entre la búsqueda lineal y la búsqueda binaria?**
+    - A) La búsqueda lineal solo funciona en listas ordenadas.
+    - B) La búsqueda binaria solo funciona en listas ordenadas.
+    - C) La búsqueda binaria es más lenta que la búsqueda lineal.
+    - D) La búsqueda lineal requiere dividir la lista en partes.
+    
+    **Respuesta:** B
+    **Justificación:** La búsqueda binaria requiere que la lista esté ordenada para funcionar correctamente.
+
+2. **¿Cuál es la complejidad temporal de la búsqueda lineal en el peor caso?**
+    - A) O(1)
+    - B) O(log n)
+    - C) O(n)
+    - D) O(n^2)
+
+    **Respuesta:** C
+    **Justificación:** En el peor caso, la búsqueda lineal debe revisar todos los elementos de la lista, resultando en una complejidad temporal de O(n).
+
+3. **¿Cuál es la complejidad temporal de la búsqueda binaria en el peor caso?**
+    - A) O(1)
+    - B) O(log n)
+    - C) O(n)
+    - D) O(n^2)
+
+    **Respuesta:** B
+    **Justificación:** En el peor caso, la búsqueda binaria tiene una complejidad temporal de O(log n) debido a la división repetida de la lista.
+
+4. **¿Qué devuelve una búsqueda lineal si el elemento no se encuentra en la lista?**
+    - A) 0
+    - B) -1
+    - C) None
+    - D) El último índice de la lista
+
+    **Respuesta:** B
+    **Justificación:** La implementación típica de la búsqueda lineal devuelve -1 si el elemento no se encuentra en la lista.
+
+5. **¿Qué tipo de lista es necesaria para realizar una búsqueda binaria?**
+    - A) Lista ordenada
+    - B) Lista desordenada
+    - C) Lista vacía
+    - D) Lista con elementos duplicados
+
+    **Respuesta:** A
+    **Justificación:** La búsqueda binaria solo puede realizarse en una lista ordenada.
+
+6. **¿Qué devuelve una búsqueda binaria si el elemento no se encuentra en la lista?**
+    - A) 0
+    - B) -1
+    - C) None
+    - D) El último índice de la lista
+
+    **Respuesta:** B
+    **Justificación:** La implementación típica de la búsqueda binaria devuelve -1 si el elemento no se encuentra en la lista.
+
+7. **¿Qué ventaja tiene la búsqueda binaria sobre la búsqueda lineal?**
+    - A) Funciona en listas desordenadas
+    - B) Es más fácil de implementar
+    - C) Es más eficiente en listas grandes y ordenadas
+    - D) No requiere acceso a los elementos de la lista
+
+    **Respuesta:** C
+    **Justificación:** La búsqueda binaria es más eficiente que la búsqueda lineal en listas grandes y ordenadas debido a su complejidad temporal de O(log n).
+
+8. **¿Cuál de los siguientes casos resulta en el peor desempeño de la búsqueda lineal?**
+    - A) El elemento está en la primera posición
+    - B) El elemento está en la última posición
+    - C) La lista está vacía
+    - D) La lista está ordenada
+
+    **Respuesta:** B
+    **Justificación:** El peor caso de la búsqueda lineal ocurre cuando el elemento está en la última posición de la lista, ya que debe revisar todos los elementos.
+
+9. **¿Qué estrategia de búsqueda es más adecuada para listas cortas?**
+    - A) Búsqueda lineal
+    - B) Búsqueda binaria
+    - C) Ambas son igualmente adecuadas
+    - D) Ninguna de las anteriores
+
+    **Respuesta:** A
+    **Justificación:** La búsqueda lineal es adecuada para listas cortas debido a su simplicidad y facilidad de implementación.
+
+10. **¿En qué tipo de datos es más útil la búsqueda binaria?**
+    - A) Datos desordenados
+    - B) Datos ordenados
+    - C) Datos no numéricos
+    - D) Datos complejos
+
+    **Respuesta:** B
+    **Justificación:** La búsqueda binaria es más útil en datos ordenados, ya que su eficiencia se basa en la división repetida de la lista ordenada.
+
+11. **¿Qué tipo de búsqueda es más adecuada para encontrar múltiples apariciones de un elemento en una lista desordenada?**
+    - A) Búsqueda lineal
+    - B) Búsqueda binaria
+    - C) Ambas
+    - D) Ninguna
+
+    **Respuesta:** A
+    **Justificación:** La búsqueda lineal es adecuada para encontrar múltiples apariciones de un elemento en una lista desordenada, ya que puede revisar todos los elementos.
+
+12. **¿Qué tipo de búsqueda utilizarías si no conoces el orden de los elementos en la lista?**
+    - A) Búsqueda lineal
+    - B) Búsqueda binaria
+    - C) Ambas
+    - D) Ninguna
+
+    **Respuesta:** A
+    **Justificación:** La búsqueda lineal se puede utilizar en listas desordenadas, ya que no requiere que los elementos estén en un orden específico.
+
+13. **¿Cuál es la salida de `busqueda_binaria([1, 2, 3, 4, 5], 3)`?**
+    - A) 0
+    - B) 1
+    - C) 2
+    - D) 3
+
+    **Respuesta:** C
+    **Justificación:** En la lista `[1, 2, 3, 4, 5]`, el elemento `3` se encuentra en el índice `2`.
+
+14. **¿Cuál es la salida de `busqueda_lineal([1, 2, 3, 4, 5], 6)`?**
+    - A) 4
+    - B) 5
+    - C) -1
+    - D) None
+
+    **Respuesta:** C
+    **Justificación:** En la lista `[1, 2, 3, 4, 5]`, el elemento `6` no se encuentra, por lo que `busqueda_lineal` devuelve `-1`.
+
+15. **¿Cuál es la complejidad temporal promedio de la búsqueda binaria?**
+    - A) O(1)
+    - B) O(log n)
+    - C) O(n)
+    - D) O(n^2)
+
+    **Respuesta:** B
+    **Justificación:** La búsqueda binaria tiene una complejidad temporal promedio de O(log n) debido a la división repetida de la lista.
+
+---
+
+### Cierre del Capítulo
+
+Los algoritmos de búsqueda son fundamentales para localizar elementos dentro de una estructura de datos de manera eficiente. La búsqueda lineal es simple y funciona en cualquier tipo de lista, mientras que la búsqueda binaria es más eficiente pero requiere que la lista esté ordenada.
+
+**Importancia de los Algoritmos de Búsqueda:**
+
+1. **Eficiencia en la Recuperación de Datos:**
+   Los algoritmos de búsqueda son esenciales para la recuperación rápida y eficiente de datos. En aplicaciones donde la velocidad es crítica, como bases de datos y motores de búsqueda, el uso de algoritmos de búsqueda eficientes puede marcar una gran diferencia.
+
+2. **Aplicaciones Diversas:**
+   Los algoritmos de búsqueda se utilizan en una amplia variedad de aplicaciones, desde sistemas de archivos hasta aplicaciones web y motores de búsqueda. Por ejemplo, Google utiliza algoritmos de búsqueda avanzados para recuperar rápidamente información relevante de su enorme base de datos.
+
+3. **Fundamentos para Algoritmos Más Avanzados:**
+   La comprensión de los algoritmos de búsqueda es fundamental para aprender algoritmos más avanzados y optimizados. Por ejemplo, la búsqueda binaria es la base para muchos algoritmos de ordenamiento y estructuras de datos avanzadas como árboles de búsqueda binarios.
+
+**Ejemplos de la Vida Cotidiana:**
+
+1. **Búsqueda Lineal:**
+   - **Búsqueda en una Lista de Compras:** Al buscar un artículo específico en una lista de compras desordenada, normalmente se revisa cada elemento hasta encontrar el artículo deseado.
+   - **Búsqueda en un Documento:** Al buscar una palabra en un documento de texto, el proceso puede ser similar a una búsqueda lineal, revisando cada palabra en secuencia.
+
+2. **Búsqueda Binaria:**
+   - **Páginas Amarillas:** En un directorio telefónico ordenado alfabéticamente, la búsqueda de un nombre específico
+
+ puede hacerse de manera similar a la búsqueda binaria, dividiendo el directorio repetidamente a la mitad.
+   - **Índice de un Libro:** Al buscar un tema en el índice de un libro ordenado alfabéticamente, se puede utilizar una estrategia de búsqueda binaria para encontrar rápidamente la página correspondiente.
+
+En resumen, los algoritmos de búsqueda son herramientas poderosas que permiten a los programadores encontrar datos de manera eficiente y efectiva. La comprensión y el uso adecuado de estos algoritmos son esenciales para el desarrollo de aplicaciones robustas y de alto rendimiento, mejorando significativamente la capacidad de recuperar información de manera rápida y precisa.
+
+

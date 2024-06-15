@@ -2796,7 +2796,7 @@ def merge(izquierda, derecha):
     - B) O(n)
     - C) O(n^2)
     - D) O(n log n)
-    
+
     **Respuesta:** C
     **Justificación:** El ordenamiento de burbuja tiene una complejidad temporal promedio de O(n^2) debido a los múltiples intercambios necesarios para ordenar la lista.
 
@@ -2964,3 +2964,681 @@ Los algoritmos de ordenamiento son herramientas esenciales para organizar datos 
 
 En resumen, los algoritmos de ordenamiento son fundamentales para la organización y manipulación eficiente de datos. La comprensión y el uso adecuado de estos algoritmos permiten a los programadores desarrollar aplicaciones robustas y de alto rendimiento, mejorando significativamente la capacidad de gestionar y analizar datos de manera efectiva.
 
+# 
+
+### Capítulo 7: Algoritmos en Grafos
+
+Los grafos son estructuras de datos fundamentales que permiten representar relaciones entre pares de elementos. En este capítulo, exploraremos varios algoritmos importantes para trabajar con grafos, incluyendo la búsqueda en profundidad (DFS), la búsqueda en amplitud (BFS), el algoritmo de Dijkstra, el algoritmo de Kruskal y el algoritmo de Prim.
+
+---
+
+### Búsqueda en Profundidad (DFS)
+
+La búsqueda en profundidad (DFS) es un algoritmo de recorrido de grafos que explora tan lejos como sea posible a lo largo de cada rama antes de retroceder. Es útil para encontrar componentes conectados, detectar ciclos y resolver problemas como el laberinto.
+
+#### Definición y Funcionamiento
+
+1. **Definición:**
+   DFS recorre un grafo comenzando desde un nodo inicial y explorando tan lejos como sea posible a lo largo de cada rama antes de retroceder.
+
+2. **Funcionamiento:**
+   - Comienza en el nodo inicial y marca este nodo como visitado.
+   - Recurre para cada nodo adyacente no visitado, marcándolo como visitado y explorando sus vecinos.
+   - Continúa el proceso hasta que todos los nodos alcanzables desde el nodo inicial hayan sido visitados.
+
+#### Algoritmo
+
+```python
+def dfs(grafo, inicio, visitados=None):
+    if visitados is None:
+        visitados = set()
+    visitados.add(inicio)
+    print(inicio, end=' ')
+    for vecino in grafo[inicio]:
+        if vecino not in visitados:
+            dfs(grafo, vecino, visitados)
+```
+
+#### Ejemplos
+
+- **Ejemplo de uso con un grafo de amistades:**
+  ```python
+  grafo_amistades = {
+      'A': ['B', 'C'],
+      'B': ['A', 'D', 'E'],
+      'C': ['A', 'F'],
+      'D': ['B'],
+      'E': ['B', 'F'],
+      'F': ['C', 'E']
+  }
+  print("DFS comenzando desde A:")
+  dfs(grafo_amistades, 'A')
+  ```
+
+---
+
+### Búsqueda en Amplitud (BFS)
+
+La búsqueda en amplitud (BFS) es un algoritmo de recorrido de grafos que explora todos los nodos en el nivel actual antes de pasar al siguiente nivel. Es útil para encontrar la ruta más corta en grafos no ponderados.
+
+#### Definición y Funcionamiento
+
+1. **Definición:**
+   BFS recorre un grafo nivel por nivel, explorando todos los nodos en el nivel actual antes de pasar al siguiente.
+
+2. **Funcionamiento:**
+   - Comienza en el nodo inicial y lo marca como visitado.
+   - Usa una cola para mantener los nodos por explorar.
+   - Extrae el primer nodo de la cola, explora sus vecinos no visitados y los agrega a la cola.
+   - Repite el proceso hasta que la cola esté vacía.
+
+#### Algoritmo
+
+```python
+from collections import deque
+
+def bfs(grafo, inicio):
+    visitados = set()
+    cola = deque([inicio])
+    visitados.add(inicio)
+    while cola:
+        vertice = cola.popleft()
+        print(vertice, end=' ')
+        for vecino in grafo[vertice]:
+            if vecino not in visitados:
+                visitados.add(vecino)
+                cola.append(vecino)
+```
+
+#### Ejemplos
+
+- **Ejemplo de uso con un grafo de amistades:**
+  ```python
+  grafo_amistades = {
+      'A': ['B', 'C'],
+      'B': ['A', 'D', 'E'],
+      'C': ['A', 'F'],
+      'D': ['B'],
+      'E': ['B', 'F'],
+      'F': ['C', 'E']
+  }
+  print("BFS comenzando desde A:")
+  bfs(grafo_amistades, 'A')
+  ```
+
+---
+
+### Algoritmo de Dijkstra
+
+El algoritmo de Dijkstra es un algoritmo de búsqueda de caminos mínimos que encuentra el camino más corto desde un nodo inicial a todos los demás nodos en un grafo ponderado con pesos no negativos.
+
+#### Definición y Funcionamiento
+
+1. **Definición:**
+   Dijkstra encuentra el camino más corto desde un nodo inicial a todos los demás nodos en un grafo ponderado.
+
+2. **Funcionamiento:**
+   - Inicializa la distancia desde el nodo inicial a sí mismo como 0 y a todos los demás nodos como infinito.
+   - Usa una cola de prioridad para explorar el nodo con la distancia mínima conocida.
+   - Actualiza las distancias a los nodos adyacentes si se encuentra un camino más corto.
+   - Repite el proceso hasta que todos los nodos hayan sido explorados.
+
+#### Algoritmo
+
+```python
+import heapq
+
+def dijkstra(grafo, inicio):
+    distancias = {nodo: float('inf') for nodo in grafo}
+    distancias[inicio] = 0
+    cola_prioridad = [(0, inicio)]
+    
+    while cola_prioridad:
+        (distancia_actual, nodo_actual) = heapq.heappop(cola_prioridad)
+        
+        if distancia_actual > distancias[nodo_actual]:
+            continue
+        
+        for vecino, peso en grafo[nodo_actual].items():
+            distancia = distancia_actual + peso
+            
+            if distancia < distancias[vecino]:
+                distancias[vecino] = distancia
+                heapq.heappush(cola_prioridad, (distancia, vecino))
+    
+    return distancias
+```
+
+#### Ejemplos
+
+- **Ejemplo de uso con un grafo de rutas:**
+  ```python
+  grafo_rutas = {
+      'A': {'B': 1, 'C': 4},
+      'B': {'A': 1, 'C': 2, 'D': 5},
+      'C': {'A': 4, 'B': 2, 'D': 1},
+      'D': {'B': 5, 'C': 1}
+  }
+  print("Distancias desde A:", dijkstra(grafo_rutas, 'A'))
+  ```
+
+---
+
+### Algoritmo de Kruskal
+
+El algoritmo de Kruskal es un algoritmo para encontrar el árbol de expansión mínima (MST) de un grafo no dirigido. El MST es un subconjunto de las aristas del grafo que conecta todos los nodos con el peso total mínimo y sin ciclos.
+
+#### Definición y Funcionamiento
+
+1. **Definición:**
+   Kruskal encuentra el árbol de expansión mínima de un grafo no dirigido.
+
+2. **Funcionamiento:**
+   - Ordena todas las aristas del grafo por peso.
+   - Usa un conjunto de disjuntos para evitar ciclos.
+   - Agrega las aristas más pequeñas al MST, asegurando que no se formen ciclos.
+   - Repite el proceso hasta que todas las aristas necesarias hayan sido agregadas.
+
+#### Algoritmo
+
+```python
+class ConjuntoDisjunto:
+    def __init__(self, vertices):
+        self.padre = {vertice: vertice for vertice in vertices}
+        self.rango = {vertice: 0 for vertice in vertices}
+    
+    def encontrar(self, vertice):
+        if self.padre[vertice] != vertice:
+            self.padre[vertice] = self.encontrar(self.padre[vertice])
+        return self.padre[vertice]
+    
+    def unir(self, vertice1, vertice2):
+        raiz1 = self.encontrar(vertice1)
+        raiz2 = self.encontrar(vertice2)
+        
+        if raiz1 != raiz2:
+            if self.rango[raiz1] > self.rango[raiz2]:
+                self.padre[raiz2] = raiz1
+            else:
+                self.padre[raiz1] = raiz2
+                if self.rango[raiz1] == self.rango[raiz2]:
+                    self.rango[raiz2] += 1
+
+def kruskal(grafo):
+    aristas = []
+    for vertice en grafo:
+        for vecino, peso en grafo[vertice].items():
+            aristas.append((peso, vertice, vecino))
+    aristas.sort()
+    
+    conjunto = ConjuntoDisjunto(grafo.keys())
+    mst = []
+    
+    for peso, vertice1, vertice2 en aristas:
+        if conjunto.encontrar(vertice1) != conjunto.encontrar(vertice2):
+            conjunto.unir(vertice1, vertice2)
+            mst.append((vertice1, vertice2, peso))
+    
+    return mst
+```
+
+#### Ejemplos
+
+- **Ejemplo de uso con un grafo de ciudades y distancias:**
+  ```python
+  grafo_ciudades = {
+      'A': {'B': 1, 'C': 3},
+      'B': {'A': 1, 'C': 2, 'D': 4},
+      'C': {'A': 3, 'B': 2, 'D': 5},
+      'D': {'B': 4, 'C': 5}
+  }
+  print("Árbol de expansión mínima:", kruskal(grafo_ciudades))
+  ```
+
+---
+
+### Algoritmo de Prim
+
+El algoritmo de Prim es otro algoritmo para encontrar el árbol de expansión mínima (MST) de un grafo no dirigido. A diferencia de Kruskal, Prim constru
+
+ye el MST agregando repetidamente la arista más pequeña que conecta un nodo dentro del MST a un nodo fuera de él.
+
+#### Definición y Funcionamiento
+
+1. **Definición:**
+   Prim encuentra el árbol de expansión mínima de un grafo no dirigido.
+
+2. **Funcionamiento:**
+   - Comienza con un nodo arbitrario y marca este nodo como parte del MST.
+   - Usa una cola de prioridad para seleccionar la arista más pequeña que conecta un nodo dentro del MST a un nodo fuera de él.
+   - Agrega esta arista al MST y marca el nuevo nodo como parte del MST.
+   - Repite el proceso hasta que todos los nodos estén en el MST.
+
+#### Algoritmo
+
+```python
+import heapq
+
+def prim(grafo, inicio):
+    mst = []
+    visitados = set([inicio])
+    aristas = [(peso, inicio, vecino) for vecino, peso en grafo[inicio].items()]
+    heapq.heapify(aristas)
+    
+    while aristas:
+        peso, vertice1, vertice2 = heapq.heappop(aristas)
+        if vertice2 not en visitados:
+            visitados.add(vertice2)
+            mst.append((vertice1, vertice2, peso))
+            
+            for siguiente, peso en grafo[vertice2].items():
+                if siguiente not en visitados:
+                    heapq.heappush(aristas, (peso, vertice2, siguiente))
+    
+    return mst
+```
+
+#### Ejemplos
+
+- **Ejemplo de uso con un grafo de redes de computadoras:**
+  ```python
+  grafo_red = {
+      'A': {'B': 2, 'C': 3},
+      'B': {'A': 2, 'C': 1, 'D': 4},
+      'C': {'A': 3, 'B': 1, 'D': 5},
+      'D': {'B': 4, 'C': 5}
+  }
+  print("Árbol de expansión mínima:", prim(grafo_red, 'A'))
+  ```
+
+---
+
+### Ejercicios
+
+1. **Implementar DFS en un grafo de amigos:**
+   ```python
+   grafo_amigos = {
+       'A': ['B', 'C'],
+       'B': ['A', 'D', 'E'],
+       'C': ['A', 'F'],
+       'D': ['B'],
+       'E': ['B', 'F'],
+       'F': ['C', 'E']
+   }
+   print("DFS comenzando desde A:")
+   dfs(grafo_amigos, 'A')
+   ```
+
+2. **Implementar BFS en un grafo de amigos:**
+   ```python
+   grafo_amigos = {
+       'A': ['B', 'C'],
+       'B': ['A', 'D', 'E'],
+       'C': ['A', 'F'],
+       'D': ['B'],
+       'E': ['B', 'F'],
+       'F': ['C', 'E']
+   }
+   print("BFS comenzando desde A:")
+   bfs(grafo_amigos, 'A')
+   ```
+
+3. **Implementar el algoritmo de Dijkstra en un grafo de rutas:**
+   ```python
+   grafo_rutas = {
+       'A': {'B': 1, 'C': 4},
+       'B': {'A': 1, 'C': 2, 'D': 5},
+       'C': {'A': 4, 'B': 2, 'D': 1},
+       'D': {'B': 5, 'C': 1}
+   }
+   print("Distancias desde A:", dijkstra(grafo_rutas, 'A'))
+   ```
+
+4. **Implementar el algoritmo de Kruskal en un grafo de ciudades y distancias:**
+   ```python
+   grafo_ciudades = {
+       'A': {'B': 1, 'C': 3},
+       'B': {'A': 1, 'C': 2, 'D': 4},
+       'C': {'A': 3, 'B': 2, 'D': 5},
+       'D': {'B': 4, 'C': 5}
+   }
+   print("Árbol de expansión mínima:", kruskal(grafo_ciudades))
+   ```
+
+5. **Implementar el algoritmo de Prim en un grafo de redes de computadoras:**
+   ```python
+   grafo_red = {
+       'A': {'B': 2, 'C': 3},
+       'B': {'A': 2, 'C': 1, 'D': 4},
+       'C': {'A': 3, 'B': 1, 'D': 5},
+       'D': {'B': 4, 'C': 5}
+   }
+   print("Árbol de expansión mínima:", prim(grafo_red, 'A'))
+   ```
+
+6. **Crear un grafo y realizar DFS desde un nodo arbitrario:**
+   ```python
+   grafo = {
+       '1': ['2', '3'],
+       '2': ['1', '4'],
+       '3': ['1', '5'],
+       '4': ['2'],
+       '5': ['3']
+   }
+   print("DFS comenzando desde 1:")
+   dfs(grafo, '1')
+   ```
+
+7. **Crear un grafo y realizar BFS desde un nodo arbitrario:**
+   ```python
+   grafo = {
+       '1': ['2', '3'],
+       '2': ['1', '4'],
+       '3': ['1', '5'],
+       '4': ['2'],
+       '5': ['3']
+   }
+   print("BFS comenzando desde 1:")
+   bfs(grafo, '1')
+   ```
+
+8. **Calcular el camino más corto utilizando Dijkstra en un grafo de ciudades:**
+   ```python
+   grafo_ciudades = {
+       'A': {'B': 2, 'C': 5, 'D': 1},
+       'B': {'A': 2, 'C': 3, 'D': 2},
+       'C': {'A': 5, 'B': 3, 'D': 3},
+       'D': {'A': 1, 'B': 2, 'C': 3}
+   }
+   print("Distancias desde A:", dijkstra(grafo_ciudades, 'A'))
+   ```
+
+9. **Encontrar el MST utilizando Kruskal en un grafo de carreteras:**
+   ```python
+   grafo_carreteras = {
+       'A': {'B': 7, 'D': 5},
+       'B': {'A': 7, 'C': 8, 'D': 9, 'E': 7},
+       'C': {'B': 8, 'E': 5},
+       'D': {'A': 5, 'B': 9, 'E': 15, 'F': 6},
+       'E': {'B': 7, 'C': 5, 'D': 15, 'F': 8, 'G': 9},
+       'F': {'D': 6, 'E': 8, 'G': 11},
+       'G': {'E': 9, 'F': 11}
+   }
+   print("Árbol de expansión mínima:", kruskal(grafo_carreteras))
+   ```
+
+10. **Encontrar el MST utilizando Prim en un grafo de redes de electricidad:**
+    ```python
+    grafo_electricidad = {
+        'A': {'B': 2, 'C': 3},
+        'B': {'A': 2, 'C': 1, 'D': 4},
+        'C': {'A': 3, 'B': 1, 'D': 5},
+        'D': {'B': 4, 'C': 5}
+    }
+    print("Árbol de expansión mínima:", prim(grafo_electricidad, 'A'))
+    ```
+
+11. **Implementar DFS para detectar ciclos en un grafo:**
+    ```python
+    def detectar_ciclo_dfs(grafo, inicio, visitados=None, padre=None):
+        if visitados is None:
+            visitados = set()
+        visitados.add(inicio)
+        for vecino en grafo[inicio]:
+            if vecino not en visitados:
+                if detectar_ciclo_dfs(grafo, vecino, visitados, inicio):
+                    return True
+            elif padre is not None and vecino != padre:
+                return True
+        return False
+
+    grafo = {
+        '1': ['2', '3'],
+        '2': ['1', '4'],
+        '3': ['1', '5'],
+        '4': ['2'],
+        '5': ['3']
+    }
+    print("¿El grafo tiene un ciclo?", detectar_ciclo_dfs(grafo, '1'))
+    ```
+
+12. **Implementar BFS para encontrar el camino más corto entre dos nodos en un grafo no ponderado:**
+    ```python
+    def bfs_camino_mas_corto(grafo, inicio, objetivo):
+        visitados = {inicio: None}
+        cola = deque([inicio])
+        while cola:
+            vertice = cola.popleft()
+            if vertice == objetivo:
+                camino = []
+                while vertice is not None:
+                    camino.append(vertice)
+                    vertice = visitados[vertice]
+                return camino[::-1]
+            for vecino en gra
+
+fo[vertice]:
+                if vecino not en visitados:
+                    visitados[vecino] = vertice
+                    cola.append(vecino)
+        return None
+
+    grafo = {
+        'A': ['B', 'C'],
+        'B': ['A', 'D', 'E'],
+        'C': ['A', 'F'],
+        'D': ['B'],
+        'E': ['B', 'F'],
+        'F': ['C', 'E']
+    }
+    print("Camino más corto de A a F:", bfs_camino_mas_corto(grafo, 'A', 'F'))
+    ```
+
+13. **Encontrar el camino más corto en un grafo ponderado utilizando Dijkstra:**
+    ```python
+    grafo_rutas = {
+        'A': {'B': 1, 'C': 4},
+        'B': {'A': 1, 'C': 2, 'D': 5},
+        'C': {'A': 4, 'B': 2, 'D': 1},
+        'D': {'B': 5, 'C': 1}
+    }
+    print("Distancias desde A:", dijkstra(grafo_rutas, 'A'))
+    ```
+
+14. **Implementar el algoritmo de Kruskal para encontrar el MST en un grafo de aeropuertos:**
+    ```python
+    grafo_aeropuertos = {
+        'JFK': {'LAX': 2475, 'ORD': 740},
+        'LAX': {'JFK': 2475, 'ORD': 1744, 'DFW': 1235},
+        'ORD': {'JFK': 740, 'LAX': 1744, 'DFW': 802, 'MIA': 1197},
+        'DFW': {'LAX': 1235, 'ORD': 802, 'MIA': 1120},
+        'MIA': {'ORD': 1197, 'DFW': 1120}
+    }
+    print("Árbol de expansión mínima:", kruskal(grafo_aeropuertos))
+    ```
+
+15. **Implementar el algoritmo de Prim para encontrar el MST en un grafo de estaciones de tren:**
+    ```python
+    grafo_tren = {
+        'A': {'B': 2, 'C': 3},
+        'B': {'A': 2, 'C': 1, 'D': 4},
+        'C': {'A': 3, 'B': 1, 'D': 5},
+        'D': {'B': 4, 'C': 5}
+    }
+    print("Árbol de expansión mínima:", prim(grafo_tren, 'A'))
+    ```
+
+---
+
+### Examen: Algoritmos en Grafos
+
+1. **¿Qué algoritmo de recorrido de grafos explora tan lejos como sea posible a lo largo de cada rama antes de retroceder?**
+    - A) Búsqueda en amplitud (BFS)
+    - B) Búsqueda en profundidad (DFS)
+    - C) Algoritmo de Dijkstra
+    - D) Algoritmo de Kruskal
+    **Respuesta:** B
+    **Justificación:** La búsqueda en profundidad (DFS) explora tan lejos como sea posible a lo largo de cada rama antes de retroceder.
+
+2. **¿Qué estructura de datos se utiliza comúnmente para implementar BFS?**
+    - A) Pila
+    - B) Cola
+    - C) Lista
+    - D) Árbol
+    **Respuesta:** B
+    **Justificación:** La búsqueda en amplitud (BFS) se implementa comúnmente usando una cola.
+
+3. **¿Cuál de los siguientes algoritmos encuentra el camino más corto desde un nodo inicial a todos los demás nodos en un grafo ponderado con pesos no negativos?**
+    - A) Búsqueda en amplitud (BFS)
+    - B) Búsqueda en profundidad (DFS)
+    - C) Algoritmo de Dijkstra
+    - D) Algoritmo de Kruskal
+    **Respuesta:** C
+    **Justificación:** El algoritmo de Dijkstra encuentra el camino más corto desde un nodo inicial a todos los demás nodos en un grafo ponderado con pesos no negativos.
+
+4. **¿Qué algoritmo de grafos utiliza conjuntos disjuntos para evitar ciclos al construir el árbol de expansión mínima?**
+    - A) Algoritmo de Dijkstra
+    - B) Búsqueda en profundidad (DFS)
+    - C) Algoritmo de Kruskal
+    - D) Algoritmo de Prim
+    **Respuesta:** C
+    **Justificación:** El algoritmo de Kruskal utiliza conjuntos disjuntos para evitar ciclos al construir el árbol de expansión mínima.
+
+5. **¿Qué algoritmo de grafos selecciona repetidamente la arista más pequeña que conecta un nodo dentro del MST a un nodo fuera de él?**
+    - A) Algoritmo de Dijkstra
+    - B) Búsqueda en amplitud (BFS)
+    - C) Algoritmo de Kruskal
+    - D) Algoritmo de Prim
+    **Respuesta:** D
+    **Justificación:** El algoritmo de Prim selecciona repetidamente la arista más pequeña que conecta un nodo dentro del MST a un nodo fuera de él.
+
+6. **¿Cuál es la complejidad temporal de la búsqueda en profundidad (DFS) en términos de nodos (V) y aristas (E)?**
+    - A) O(V + E)
+    - B) O(V^2)
+    - C) O(V log V)
+    - D) O(E log E)
+    **Respuesta:** A
+    **Justificación:** La complejidad temporal de la búsqueda en profundidad (DFS) es O(V + E), donde V es el número de nodos y E es el número de aristas.
+
+7. **¿Cuál es la principal diferencia entre los algoritmos de Kruskal y Prim para encontrar el MST?**
+    - A) Kruskal construye el MST agregando aristas, mientras que Prim agrega nodos.
+    - B) Kruskal es más eficiente que Prim.
+    - C) Prim es más eficiente que Kruskal.
+    - D) No hay diferencia.
+    **Respuesta:** A
+    **Justificación:** Kruskal construye el MST agregando aristas, mientras que Prim agrega nodos.
+
+8. **¿Qué algoritmo de grafos puede detectar ciclos en un grafo no dirigido?**
+    - A) Búsqueda en amplitud (BFS)
+    - B) Búsqueda en profundidad (DFS)
+    - C) Algoritmo de Dijkstra
+    - D) Algoritmo de Prim
+    **Respuesta:** B
+    **Justificación:** La búsqueda en profundidad (DFS) puede detectar ciclos en un grafo no dirigido.
+
+9. **¿Cuál es la estructura de datos clave utilizada en el algoritmo de Dijkstra para seleccionar el nodo con la distancia mínima conocida?**
+    - A) Pila
+    - B) Cola de prioridad
+    - C) Lista
+    - D) Árbol
+    **Respuesta:** B
+    **Justificación:** El algoritmo de Dijkstra utiliza una cola de prioridad para seleccionar el nodo con la distancia mínima conocida.
+
+10. **¿Qué algoritmo de grafos es adecuado para encontrar el MST en un grafo de carreteras?**
+    - A) Búsqueda en amplitud (BFS)
+    - B) Búsqueda en profundidad (DFS)
+    - C) Algoritmo de Kruskal
+    - D) Algoritmo de Dijkstra
+    **Respuesta:** C
+    **Justificación:** El algoritmo de Kruskal es adecuado para encontrar el MST en un grafo de carreteras.
+
+11. **¿Cuál es la complejidad temporal del algoritmo de Prim usando una cola de prioridad?**
+    - A) O(V + E)
+    - B) O(V^2)
+    - C) O((V + E) log V)
+    - D) O(E log E)
+    **Respuesta:** C
+    **Justificación:** La complejidad temporal del algoritmo de Prim usando una cola de prioridad es O((V + E) log V).
+
+12. **¿Qué algoritmo de grafos explora todos los nodos en el nivel actual antes de pasar al siguiente nivel?**
+    - A) Búsqueda en profundidad (DFS)
+    - B) Búsqueda en amplitud (BFS)
+    - C) Algoritmo de Kruskal
+    - D) Algoritmo de Prim
+    **Respuesta:** B
+    **Justificación:** La búsqueda en amplitud (BFS) explora todos los nodos en el nivel actual antes de pasar al siguiente nivel.
+
+13. **¿Qué algoritmo de grafos es más adecuado para encontrar el camino más corto en un grafo no ponderado?**
+    - A) Búsqueda en profundidad (DFS)
+    - B) Búsqueda en amplitud (BFS)
+    - C) Algoritmo de Dijkstra
+    - D) Algoritmo de Prim
+    **Respuesta:** B
+    **Justificación:** La búsqueda en amplitud (BFS) es más adecuada para encontrar el camino más corto en un grafo no ponderado.
+
+14. **¿Cuál es la principal ventaja del algoritmo de Kruskal sobre el algoritmo de Prim?**
+    - A) Kruskal es más fácil de implementar.
+    - B) Kruskal puede funcionar mejor en grafos dispersos.
+    - C) Kruskal tiene una complejidad temporal mejor.
+    - D) Kruskal siempre
+
+ es más rápido.
+    **Respuesta:** B
+    **Justificación:** Kruskal puede funcionar mejor en grafos dispersos donde las aristas no están distribuidas uniformemente.
+
+15. **¿Cuál de los siguientes algoritmos es más adecuado para encontrar el camino más corto desde un nodo inicial a todos los demás nodos en un grafo con pesos negativos?**
+    - A) Búsqueda en amplitud (BFS)
+    - B) Búsqueda en profundidad (DFS)
+    - C) Algoritmo de Dijkstra
+    - D) Ninguno de los anteriores
+    **Respuesta:** D
+    **Justificación:** El algoritmo de Dijkstra no funciona correctamente con pesos negativos; se requiere el algoritmo de Bellman-Ford para manejar grafos con pesos negativos.
+
+---
+
+### Cierre del Capítulo
+
+Los algoritmos en grafos son herramientas poderosas que permiten resolver una amplia variedad de problemas en campos como la informática, las redes y la optimización. Comprender y utilizar estos algoritmos es esencial para desarrollar soluciones eficientes y efectivas.
+
+**Importancia de los Algoritmos en Grafos:**
+
+1. **Eficiencia en la Resolución de Problemas:**
+   Los algoritmos en grafos son fundamentales para resolver problemas complejos de manera eficiente, como encontrar caminos más cortos, detectar ciclos y construir árboles de expansión mínima.
+
+2. **Aplicaciones Diversas:**
+   Estos algoritmos tienen aplicaciones en una amplia variedad de campos, incluyendo redes de computadoras, logística, bioinformática y análisis de redes sociales.
+
+3. **Base para Algoritmos Más Avanzados:**
+   La comprensión de los algoritmos básicos en grafos es esencial para aprender y aplicar algoritmos más avanzados y técnicas de optimización.
+
+**Ejemplos de la Vida Cotidiana:**
+
+1. **Búsqueda en Profundidad (DFS):**
+   - **Resolución de Laberintos:** DFS se puede utilizar para encontrar una ruta a través de un laberinto explorando todos los caminos posibles hasta encontrar la salida.
+   - **Detección de Ciclos en Redes Sociales:** DFS puede detectar ciclos en redes sociales, identificando conexiones redundantes entre usuarios.
+
+2. **Búsqueda en Amplitud (BFS):**
+   - **Navegación en Mapas:** BFS se utiliza para encontrar la ruta más corta en mapas y sistemas de navegación, explorando todas las rutas posibles de manera sistemática.
+   - **Propagación de Información:** BFS puede modelar la propagación de información o rumores en una red social, explorando conexiones a nivel de amigos.
+
+3. **Algoritmo de Dijkstra:**
+   - **Rutas de Transporte Público:** Dijkstra se utiliza para encontrar las rutas más cortas en sistemas de transporte público, minimizando el tiempo de viaje.
+   - **Optimización de Redes:** Dijkstra se aplica en la optimización de redes de comunicación, encontrando rutas óptimas para el envío de datos.
+
+4. **Algoritmo de Kruskal:**
+   - **Construcción de Redes de Fibra Óptica:** Kruskal se utiliza para diseñar redes de fibra óptica minimizando el costo total de las conexiones.
+   - **Planificación de Rutas de Entrega:** Kruskal puede ayudar en la planificación de rutas de entrega, conectando todos los puntos de entrega con el costo mínimo.
+
+5. **Algoritmo de Prim:**
+   - **Redes Eléctricas:** Prim se utiliza para diseñar redes eléctricas eficientes, conectando todas las estaciones de distribución con el costo mínimo.
+   - **Desarrollo de Infraestructuras:** Prim puede aplicarse en el desarrollo de infraestructuras, optimizando la construcción de caminos y puentes.
+
+En resumen, los algoritmos en grafos son herramientas esenciales para la resolución de problemas complejos y la optimización en diversas aplicaciones. La comprensión y el uso adecuado de estos algoritmos permiten a los programadores y profesionales desarrollar soluciones robustas y eficientes, mejorando significativamente la capacidad de resolver problemas en una amplia variedad de campos.
+
+---
+
+### Leyenda
+
+- **DFS:** Depth-First Search (Búsqueda en Profundidad)
+- **BFS:** Breadth-First Search (Búsqueda en Amplitud)
+- **MST:** Minimum Spanning Tree (Árbol de Expansión Mínima)

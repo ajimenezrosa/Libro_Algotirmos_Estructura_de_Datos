@@ -4409,9 +4409,7 @@ Los algoritmos y las estructuras de datos son fundamentales para la informática
    for simbolo, codigo in huff:
        print(f"{simbolo}: {codigo}")
    ```
-   *Descripción:* Este ejemplo implementa el algoritmo de Huffman para compr
-
-imir datos. Se calcula la frecuencia de cada símbolo en el texto y se genera una tabla de códigos de Huffman para la compresión.
+   *Descripción:* Este ejemplo implementa el algoritmo de Huffman para comprimir datos. Se calcula la frecuencia de cada símbolo en el texto y se genera una tabla de códigos de Huffman para la compresión.
 
 2. **Búsqueda en Motores de Búsqueda:**
    Los motores de búsqueda utilizan algoritmos de indexación y recuperación de información para proporcionar resultados relevantes a las consultas de los usuarios. Las estructuras de datos como los árboles invertidos y los grafos son esenciales en este proceso.

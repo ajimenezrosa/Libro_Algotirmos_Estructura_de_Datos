@@ -1,3 +1,4 @@
+
 ### Capítulo 14: Algoritmos y Estructuras de Datos Distribuidos
 
 En la era del Big Data, la gestión y el procesamiento de grandes volúmenes de datos han transformado la manera en que manejamos la información. Para superar las limitaciones de los sistemas tradicionales, se han desarrollado enfoques y tecnologías avanzadas que permiten un procesamiento eficiente y escalable. Este capítulo se centra en los algoritmos y estructuras de datos distribuidos, que son fundamentales para manejar estos desafíos.
@@ -45,11 +46,9 @@ La fase Reduce es la segunda etapa del proceso MapReduce y se encarga de consoli
 
 Imaginemos un escenario donde se necesita contar la frecuencia de palabras en una colección masiva de documentos. La fase Map leería cada documento, dividiría el texto en palabras y generaría pares clave-valor donde la clave es la palabra y el valor es 1. En la fase Reduce, se agruparían todos los pares por la palabra (clave) y se sumarían los valores para obtener el conteo total de cada palabra en la colección de documentos.
 
-### **Conclusión:**
-
 MapReduce ha revolucionado el procesamiento de grandes conjuntos de datos al ofrecer un modelo de programación sencillo y eficiente para la paralelización y distribución de tareas. Su capacidad para manejar grandes volúmenes de datos en paralelo lo convierte en una herramienta indispensable en el campo del Big Data, permitiendo a las organizaciones extraer información valiosa de sus datos de manera rápida y eficaz.
 
-##### Ejemplos
+### Ejemplos
 
 **Ejemplo 1: Contar Palabras en un Documento**
 
@@ -118,6 +117,34 @@ Esto indica que la palabra "hello" aparece 2 veces, "world" aparece 2 veces, "of
 
 ### Código Completo
 
+### Descripción del Código
+
+Este ejemplo ilustra una implementación básica del modelo MapReduce para contar palabras en un conjunto de documentos. El modelo MapReduce, desarrollado por Google, permite el procesamiento paralelo de grandes volúmenes de datos. En este código, dividimos las tareas de procesamiento de datos (fase Map) y luego las combinamos (fase Reduce) para obtener el resultado final de manera eficiente.
+
+### Explicación del Código
+
+**Fase Map:**
+La función `map_function` toma un documento como entrada, lo divide en palabras y produce una lista de pares clave-valor, donde cada palabra es la clave y el valor asociado es 1. Esto representa la ocurrencia de cada palabra en el documento.
+
+**Fase Reduce:**
+La función `reduce_function` toma una lista de pares clave-valor como entrada y agrupa estos pares por clave (palabra). Utiliza un `defaultdict` de Python para contar la frecuencia de cada palabra en la lista de documentos.
+
+**Simulación de MapReduce:**
+1. **Documentos de entrada:** Una lista de documentos que contienen texto.
+2. **Fase Map:** Para cada documento, aplicamos `map_function` y recopilamos los resultados en una lista.
+3. **Fase Reduce:** Aplicamos `reduce_function` a la lista de pares clave-valor generados en la fase Map para obtener la frecuencia total de cada palabra.
+
+### Ejemplo de Salida
+
+Al ejecutar el código, la salida será:
+```
+defaultdict(<class 'int'>, {'hello': 2, 'world': 2, 'of': 1, 'MapReduce': 1, 'again': 1})
+```
+
+Esto indica que la palabra "hello" aparece 2 veces, "world" aparece 2 veces, "of" aparece 1 vez, "MapReduce" aparece 1 vez y "again" aparece 1 vez en el conjunto de documentos proporcionado.
+
+### Código Completo
+
 ```python
 from collections import defaultdict
 import multiprocessing
@@ -145,6 +172,7 @@ print(reduced)
 ```
 
 Este código proporciona una implementación básica del modelo MapReduce para el conteo de palabras, demostrando cómo se pueden dividir las tareas de procesamiento de datos y luego combinarlas para obtener el resultado final de manera eficiente.
+
 
 
 **Ejemplo 2: Sumar Números en un Gran Conjunto de Datos**
@@ -217,31 +245,40 @@ Este código proporciona una implementación simple del modelo MapReduce para su
 
 ---
 
-### 14.2 Bases de Datos NoSQL
+### 4.2 Bases de Datos NoSQL
 
 #### Descripción y Definición
 
-Las bases de datos NoSQL (Not Only SQL) representan una categoría innovadora de sistemas de almacenamiento de datos que ofrecen alternativas flexibles y escalables frente a las tradicionales bases de datos relacionales. En lugar de depender exclusivamente de esquemas de tablas rígidas con filas y columnas, las bases de datos NoSQL permiten el almacenamiento y la recuperación de datos en diversos formatos, adaptándose mejor a las necesidades de las aplicaciones modernas y grandes volúmenes de datos distribuidos.
+Las bases de datos NoSQL (Not Only SQL) representan una categoría innovadora de sistemas de almacenamiento de datos que ofrecen alternativas flexibles y escalables frente a las tradicionales bases de datos relacionales. A diferencia de estas últimas, que dependen exclusivamente de esquemas de tablas rígidas con filas y columnas, las bases de datos NoSQL permiten el almacenamiento y la recuperación de datos en diversos formatos. Esta capacidad les permite adaptarse mejor a las necesidades de las aplicaciones modernas y gestionar grandes volúmenes de datos distribuidos de manera más eficiente.
 
-Las bases de datos NoSQL están diseñadas específicamente para manejar grandes volúmenes de datos que pueden estar distribuidos en múltiples servidores, proporcionando una alta disponibilidad, escalabilidad y rendimiento. A continuación, se describen los cuatro tipos principales de bases de datos NoSQL, cada uno con sus características y ejemplos destacados:
+Las bases de datos NoSQL están diseñadas específicamente para manejar grandes volúmenes de datos que pueden estar distribuidos en múltiples servidores, proporcionando alta disponibilidad, escalabilidad y rendimiento. A continuación, se describen los cuatro tipos principales de bases de datos NoSQL, cada uno con sus características y ejemplos destacados:
 
-**Bases de Datos de Documentos:**
-- **Descripción:** Estas bases de datos almacenan datos en documentos, generalmente en formatos como JSON, BSON o XML. Cada documento es una unidad autocontenida que puede contener datos estructurados de manera jerárquica, permitiendo una gran flexibilidad en la representación de la información.
-- **Ejemplo:** MongoDB. MongoDB es una de las bases de datos de documentos más populares, utilizada ampliamente en aplicaciones web y móviles debido a su capacidad para manejar datos semi-estructurados y su fácil integración con lenguajes de programación modernos. MongoDB permite almacenar documentos con esquemas variados y realizar consultas complejas sobre los datos almacenados.
+#### Bases de Datos de Documentos
 
-**Bases de Datos de Columnas:**
-- **Descripción:** Las bases de datos de columnas organizan los datos en columnas en lugar de filas, lo que permite una mayor eficiencia en la lectura y escritura de grandes volúmenes de datos. Este enfoque es ideal para aplicaciones que requieren un acceso rápido y eficiente a datos distribuidos a lo largo de muchos servidores.
-- **Ejemplo:** Apache Cassandra. Cassandra es conocida por su capacidad para manejar grandes cantidades de datos distribuidos y su alta disponibilidad sin un único punto de falla. Es ideal para aplicaciones que requieren un rendimiento rápido y escalabilidad horizontal, como sistemas de análisis de datos en tiempo real y servicios de mensajería.
+**Descripción:** Estas bases de datos almacenan datos en documentos, generalmente en formatos como JSON, BSON o XML. Cada documento es una unidad autocontenida que puede contener datos estructurados de manera jerárquica, lo que permite una gran flexibilidad en la representación de la información.
 
-**Bases de Datos de Claves-Valor:**
-- **Descripción:** Estas bases de datos almacenan datos como pares clave-valor, donde cada clave es única y se utiliza para acceder a su valor asociado. Este modelo es extremadamente rápido y eficiente para operaciones simples de búsqueda y recuperación, siendo especialmente útil en aplicaciones que requieren un acceso rápido a datos específicos.
-- **Ejemplo:** Redis. Redis es una base de datos de clave-valor en memoria que ofrece un rendimiento extremadamente alto para operaciones de lectura y escritura. Es ampliamente utilizada en aplicaciones que requieren un acceso rápido a datos en tiempo real, como cachés, sistemas de cola de mensajes y análisis en tiempo real.
+**Ejemplo:** *MongoDB*. MongoDB es una de las bases de datos de documentos más populares, utilizada ampliamente en aplicaciones web y móviles debido a su capacidad para manejar datos semi-estructurados y su fácil integración con lenguajes de programación modernos. MongoDB permite almacenar documentos con esquemas variados y realizar consultas complejas sobre los datos almacenados.
 
-**Bases de Datos de Grafos:**
-- **Descripción:** Las bases de datos de grafos almacenan datos en nodos y relaciones, optimizadas para consultas de grafos complejas. Este modelo es ideal para representar y analizar redes y relaciones entre datos, siendo especialmente útil en aplicaciones como redes sociales, motores de recomendación y análisis de fraude.
-- **Ejemplo:** Neo4j. Neo4j es una de las bases de datos de grafos más avanzadas y utilizadas, permitiendo realizar consultas complejas y análisis profundos sobre grandes conjuntos de datos conectados. Neo4j es ideal para aplicaciones que requieren una comprensión detallada de las relaciones y conexiones entre los datos.
+#### Bases de Datos de Columnas
 
-En resumen, las bases de datos NoSQL ofrecen una amplia variedad de modelos de almacenamiento y recuperación de datos, adaptándose a las necesidades específicas de las aplicaciones modernas. Al comprender las características y ventajas de cada tipo de base de datos NoSQL, los desarrolladores pueden seleccionar la solución más adecuada para sus necesidades y optimizar el rendimiento y la escalabilidad de sus sistemas.
+**Descripción:** Las bases de datos de columnas organizan los datos en columnas en lugar de filas, lo que permite una mayor eficiencia en la lectura y escritura de grandes volúmenes de datos. Este enfoque es ideal para aplicaciones que requieren un acceso rápido y eficiente a datos distribuidos a lo largo de muchos servidores.
+
+**Ejemplo:** *Apache Cassandra*. Cassandra es conocida por su capacidad para manejar grandes cantidades de datos distribuidos y su alta disponibilidad sin un único punto de falla. Es ideal para aplicaciones que requieren un rendimiento rápido y escalabilidad horizontal, como sistemas de análisis de datos en tiempo real y servicios de mensajería.
+
+#### Bases de Datos de Claves-Valor
+
+**Descripción:** Estas bases de datos almacenan datos como pares clave-valor, donde cada clave es única y se utiliza para acceder a su valor asociado. Este modelo es extremadamente rápido y eficiente para operaciones simples de búsqueda y recuperación, siendo especialmente útil en aplicaciones que requieren un acceso rápido a datos específicos.
+
+**Ejemplo:** *Redis*. Redis es una base de datos de clave-valor en memoria que ofrece un rendimiento extremadamente alto para operaciones de lectura y escritura. Es ampliamente utilizada en aplicaciones que requieren un acceso rápido a datos en tiempo real, como cachés, sistemas de cola de mensajes y análisis en tiempo real.
+
+#### Bases de Datos de Grafos
+
+**Descripción:** Las bases de datos de grafos almacenan datos en nodos y relaciones, optimizadas para consultas de grafos complejas. Este modelo es ideal para representar y analizar redes y relaciones entre datos, siendo especialmente útil en aplicaciones como redes sociales, motores de recomendación y análisis de fraude.
+
+**Ejemplo:** *Neo4j*. Neo4j es una de las bases de datos de grafos más avanzadas y utilizadas, permitiendo realizar consultas complejas y análisis profundos sobre grandes conjuntos de datos conectados. Neo4j es ideal para aplicaciones que requieren una comprensión detallada de las relaciones y conexiones entre los datos.
+
+
+En resumen, las bases de datos NoSQL ofrecen una amplia variedad de modelos de almacenamiento y recuperación de datos, adaptándose a las necesidades específicas de las aplicaciones modernas. Al comprender las características y ventajas de cada tipo de base de datos NoSQL, los desarrolladores pueden seleccionar la solución más adecuada para sus necesidades y optimizar el rendimiento y la escalabilidad de sus sistemas. Estas bases de datos proporcionan la flexibilidad y eficiencia necesarias para manejar los desafíos de la era del Big Data, permitiendo a las organizaciones gestionar y analizar grandes volúmenes de datos de manera efectiva.
 
 ##### Ejemplos
 
@@ -357,7 +394,7 @@ Este código ilustra cómo conectarse a un servidor Redis, insertar un par clave
 
 #### Descripción y Definición
 
-Los sistemas de archivos distribuidos son una arquitectura de almacenamiento que permite a los usuarios y aplicaciones acceder a archivos almacenados en múltiples servidores como si estuvieran en un solo sistema de archivos local. Estos sistemas están diseñados para manejar grandes volúmenes de datos, garantizar una alta disponibilidad y ofrecer una robusta tolerancia a fallos. Su capacidad para distribuir y replicar datos a través de diversos nodos en un clúster asegura que los datos sean accesibles y seguros incluso en caso de fallos en el hardware.
+Los sistemas de archivos distribuidos son una arquitectura de almacenamiento diseñada para permitir a los usuarios y aplicaciones acceder a archivos almacenados en múltiples servidores como si estuvieran en un único sistema de archivos local. Estos sistemas están optimizados para manejar grandes volúmenes de datos, garantizar alta disponibilidad y ofrecer una robusta tolerancia a fallos. Al distribuir y replicar datos a través de diversos nodos en un clúster, aseguran que los datos permanezcan accesibles y seguros incluso en caso de fallos en el hardware.
 
 #### Ejemplos de Sistemas de Archivos Distribuidos
 
@@ -386,8 +423,7 @@ Los sistemas de archivos distribuidos son esenciales en el mundo actual del Big 
 - **Computación en la Nube:** Proveen la infraestructura necesaria para servicios de almacenamiento escalables y distribuidos en plataformas en la nube.
 - **Recuperación ante Desastres:** Ofrecen soluciones de almacenamiento con alta disponibilidad y recuperación automática de datos en caso de fallos.
 
-
-##### Ejemplos
+#### Ejemplos
 
 **Ejemplo 1: Uso de HDFS para Almacenar y Recuperar Archivos**
 
@@ -435,6 +471,45 @@ with hdfs.open('/mi_directorio/mi_archivo.txt', 'r') as f:
 
 Este ejemplo demuestra cómo utilizar Pydoop para manejar archivos en HDFS, facilitando la gestión de grandes volúmenes de datos en un entorno distribuido, lo cual es fundamental en aplicaciones de Big Data.
 
+### Ejemplo 2: Uso Conceptual de GFS
+
+En este ejemplo, se muestra el uso conceptual de GFS (Google File System), un sistema de archivos distribuido desarrollado por Google para almacenar grandes conjuntos de datos distribuidos a través de clústeres de servidores. GFS utiliza una arquitectura maestro-esclavo con un Master Node que maneja la metadata y los Chunk Servers que almacenan los datos.
+
+### Descripción del Código
+
+1. **Escribir un Archivo en GFS (conceptual):** Utilizamos `gfs_client.write` para escribir el archivo `mi_archivo.txt` con el contenido 'Hola, GFS!' en el directorio `/mi_directorio` en GFS.
+   ```python
+   # Escribir un archivo en GFS (conceptual)
+   gfs_client.write('/mi_directorio/mi_archivo.txt', 'Hola, GFS!')
+   ```
+
+2. **Leer un Archivo de GFS (conceptual):** Utilizamos `gfs_client.read` para leer el contenido del archivo `mi_archivo.txt` desde GFS y lo imprimimos.
+   ```python
+   # Leer un archivo de GFS (conceptual)
+   contenido = gfs_client.read('/mi_directorio/mi_archivo.txt')
+   print(contenido)
+   ```
+
+### Ejemplo de Uso Completo
+
+```python
+# Escribir un archivo en GFS (conceptual)
+gfs_client.write('/mi_directorio/mi_archivo.txt', 'Hola, GFS!')
+
+# Leer un archivo de GFS (conceptual)
+contenido = gfs_client.read('/mi_directorio/mi_archivo.txt')
+print(contenido)
+```
+
+### Explicación del Ejemplo
+
+- **Escribir en GFS:** El primer bloque de código escribe un archivo en GFS con un contenido específico. Este paso es fundamental para almacenar datos de manera distribuida en el sistema.
+- **Leer de GFS:** El segundo bloque de código recupera y muestra el contenido del archivo almacenado en GFS. Esto es esencial para verificar la integridad y disponibilidad de los datos almacenados.
+
+Aunque este ejemplo es conceptual, muestra cómo interactuar con GFS para operaciones de escritura y lectura, subrayando la facilidad de uso y la eficiencia en el manejo de datos masivos distribuidos.
+
+
+En este capítulo, hemos explorado los sistemas de archivos distribuidos, una arquitectura esencial para el almacenamiento y acceso a grandes volúmenes de datos distribuidos a través de múltiples servidores. A través de HDFS y GFS, hemos visto cómo estos sistemas garantizan alta disponibilidad, escalabilidad y tolerancia a fallos, asegurando que los datos permanezcan accesibles y seguros. Con ejemplos prácticos, hemos ilustrado cómo utilizar estos sistemas para gestionar datos distribuidos de manera eficiente, subrayando su importancia en el mundo del Big Data y la computación distribuida.
 
 **Ejemplo 2: Uso de GFS para Almacenar y Recuperar Archivos**
 
@@ -480,228 +555,273 @@ Este ejemplo conceptualiza cómo interactuar con GFS para almacenar y recuperar 
 ### Ejercicios
 
 1. **Implementar una función de MapReduce para contar palabras en un conjunto de documentos.**
-   ```python
-   def contar_palabras(documents):
-       # Función Map
-       def map_function(document):
-           result = []
-           for word in document.split():
-               result.append((word, 1))
-           return result
 
-       # Función Reduce
-       def reduce_function(pairs):
-           word_count = defaultdict(int)
-           for word, count in pairs:
-               word_count[word] += count
-           return word_count
+Este ejercicio implementa una función de MapReduce para contar la frecuencia de cada palabra en un conjunto de documentos. La función `map_function` divide cada documento en palabras y las asigna a pares clave-valor. La función `reduce_function` suma las ocurrencias de cada palabra.
 
-       mapped = []
-       for doc in documents:
-           mapped.extend(map_function(doc))
+```python
+def contar_palabras(documents):
+    # Función Map
+    def map_function(document):
+        result = []
+        for word in document.split():
+            result.append((word, 1))
+        return result
 
-       reduced = reduce_function(mapped)
-       return reduced
+    # Función Reduce
+    def reduce_function(pairs):
+        word_count = defaultdict(int)
+        for word, count in pairs:
+            word_count[word] += count
+        return word_count
 
-   # Ejemplo de uso
-   documentos = ["hola mundo", "mundo de MapReduce", "hola de nuevo"]
-   print(contar_palabras(documentos))
-   ```
+    mapped = []
+    for doc in documents:
+        mapped.extend(map_function(doc))
+
+    reduced = reduce_function(mapped)
+    return reduced
+
+# Ejemplo de uso
+documentos = ["hola mundo", "mundo de MapReduce", "hola de nuevo"]
+print(contar_palabras(documentos))
+```
 
 2. **Implementar un ejemplo de cómo almacenar y recuperar datos en una base de datos NoSQL de tipo clave-valor.**
-   ```python
-   import redis
 
-   def almacenar_y_recuperar(redis_client, clave, valor):
-       redis_client.set(clave, valor)
-       return redis_client.get(clave)
+En este ejercicio, usamos Redis, una base de datos clave-valor, para almacenar y recuperar datos. La función `almacenar_y_recuperar` guarda un valor asociado a una clave y luego lo recupera.
 
-   # Ejemplo de uso
-   r = redis.Redis(host='localhost', port=6379, db=0)
-   print(almacenar_y_recuperar(r, 'nombre', 'Alice'))
-   ```
+```python
+import redis
+
+def almacenar_y_recuperar(redis_client, clave, valor):
+    redis_client.set(clave, valor)
+    return redis_client.get(clave)
+
+# Ejemplo de uso
+r = redis.Redis(host='localhost', port=6379, db=0)
+print(almacenar_y_recuperar(r, 'nombre', 'Alice'))
+```
 
 3. **Implementar una función para escribir y leer archivos en HDFS usando Pydoop.**
-   ```python
-   import pydoop.hdfs as hdfs
 
-   def escribir_y_leer_hdfs(ruta, contenido):
-       with hdfs.open(ruta, 'w') as f:
-           f.write(contenido)
-       with hdfs.open(ruta, 'r') as f:
-           return f.read()
+Este ejercicio demuestra cómo escribir y leer archivos en HDFS usando la biblioteca Pydoop. La función `escribir_y_leer_hdfs` escribe contenido en un archivo de HDFS y luego lo lee.
 
-   # Ejemplo de uso
-   print(escribir_y_leer_hdfs('/mi_directorio/mi_archivo.txt', 'Hola, HDFS!'))
-   ```
+```python
+import pydoop.hdfs as hdfs
+
+def escribir_y_leer_hdfs(ruta, contenido):
+    with hdfs.open(ruta, 'w') as f:
+        f.write(contenido)
+    with hdfs.open(ruta, 'r') as f:
+        return f.read()
+
+# Ejemplo de uso
+print(escribir_y_leer_hdfs('/mi_directorio/mi_archivo.txt', 'Hola, HDFS!'))
+```
 
 4. **Implementar una función para realizar una búsqueda en una base de datos NoSQL de documentos (MongoDB).**
-   ```python
-   from pymongo import MongoClient
 
-   def buscar_documento(coleccion, filtro):
-       return coleccion.find_one(filtro)
+Este ejercicio muestra cómo buscar un documento en una base de datos MongoDB. La función `buscar_documento` busca un documento basado en un filtro proporcionado.
 
-   # Ejemplo de uso
-   client = MongoClient("mongodb://localhost:27017/")
-   db = client["mi_base_de_datos"]
-   coleccion = db["mi_coleccion"]
-   coleccion.insert_one({"nombre": "Alice", "edad": 30, "ciudad": "Madrid"})
-   print(buscar_documento(coleccion, {"nombre": "Alice"}))
-   ```
+```python
+from pymongo import MongoClient
+
+def buscar_documento(coleccion, filtro):
+    return coleccion.find_one(filtro)
+
+# Ejemplo de uso
+client = MongoClient("mongodb://localhost:27017/")
+db = client["mi_base_de_datos"]
+coleccion = db["mi_coleccion"]
+coleccion.insert_one({"nombre": "Alice", "edad": 30, "ciudad": "Madrid"})
+print(buscar_documento(coleccion, {"nombre": "Alice"}))
+```
 
 5. **Implementar una función de MapReduce para sumar un gran conjunto de números.**
-   ```python
-   def sumar_numeros(numbers):
-       # Función Map
-       def map_function(numbers):
-           return [(1, num) for num in numbers]
 
-       # Función Reduce
-       def reduce_function(pairs):
-           total_sum = sum(value for key, value in pairs)
-           return total_sum
+En este ejercicio, utilizamos MapReduce para sumar un conjunto de números. La función `map_function` convierte cada número en un par clave-valor, y la función `reduce_function` suma todos los valores.
 
-       mapped = map_function(numbers)
-       reduced =
+```python
+def sumar_numeros(numbers):
+    # Función Map
+    def map_function(numbers):
+        return [(1, num) for num in numbers]
 
- reduce_function(mapped)
-       return reduced
+    # Función Reduce
+    def reduce_function(pairs):
+        total_sum = sum(value for key, value in pairs)
+        return total_sum
 
-   # Ejemplo de uso
-   numeros = range(1, 101)
-   print(sumar_numeros(numeros))
-   ```
+    mapped = map_function(numbers)
+    reduced = reduce_function(mapped)
+    return reduced
+
+# Ejemplo de uso
+numeros = range(1, 101)
+print(sumar_numeros(numeros))
+```
 
 6. **Implementar una función para eliminar un documento en MongoDB.**
 
-    ```python
-        from pymongo import MongoClient
+Este ejercicio muestra cómo eliminar un documento de una colección de MongoDB. La función `eliminar_documento` elimina el documento que coincide con el filtro proporcionado.
 
-        def eliminar_documento(coleccion, filtro):
-            coleccion.delete_one(filtro)
+```python
+from pymongo import MongoClient
 
-        # Ejemplo de uso
-        client = MongoClient("mongodb://localhost:27017/")
-        db = client["mi_base_de_datos"]
-        coleccion = db["mi_coleccion"]
-        coleccion.insert_one({"nombre": "Alice", "edad": 30, "ciudad": "Madrid"})
-        eliminar_documento(coleccion, {"nombre": "Alice"})
-    ```
+def eliminar_documento(coleccion, filtro):
+    coleccion.delete_one(filtro)
 
-
+# Ejemplo de uso
+client = MongoClient("mongodb://localhost:27017/")
+db = client["mi_base_de_datos"]
+coleccion = db["mi_coleccion"]
+coleccion.insert_one({"nombre": "Alice", "edad": 30, "ciudad": "Madrid"})
+eliminar_documento(coleccion, {"nombre": "Alice"})
+```
 
 7. **Implementar una función para verificar si un archivo existe en HDFS usando Pydoop.**
-   ```python
-   import pydoop.hdfs as hdfs
 
-   def archivo_existe(ruta):
-       return hdfs.path.exists(ruta)
+En este ejercicio, verificamos si un archivo existe en HDFS. La función `archivo_existe` utiliza Pydoop para comprobar la existencia de un archivo en el sistema de archivos distribuido.
 
-   # Ejemplo de uso
-   print(archivo_existe('/mi_directorio/mi_archivo.txt'))
-   ```
+```python
+import pydoop.hdfs as hdfs
+
+def archivo_existe(ruta):
+    return hdfs.path.exists(ruta)
+
+# Ejemplo de uso
+print(archivo_existe('/mi_directorio/mi_archivo.txt'))
+```
 
 8. **Implementar un ejemplo de cómo utilizar Redis para una operación de contador.**
-   ```python
-   import redis
 
-   def incrementar_contador(redis_client, clave):
-       redis_client.incr(clave)
-       return redis_client.get(clave)
+Este ejercicio demuestra cómo usar Redis como un contador. La función `incrementar_contador` incrementa un contador almacenado en Redis.
 
-   # Ejemplo de uso
-   r = redis.Redis(host='localhost', port=6379, db=0)
-   print(incrementar_contador(r, 'contador'))
-   ```
+```python
+import redis
+
+def incrementar_contador(redis_client, clave):
+    redis_client.incr(clave)
+    return redis_client.get(clave)
+
+# Ejemplo de uso
+r = redis.Redis(host='localhost', port=6379, db=0)
+print(incrementar_contador(r, 'contador'))
+```
 
 9. **Implementar una función para contar documentos en una colección de MongoDB.**
-   ```python
-   from pymongo import MongoClient
 
-   def contar_documentos(coleccion):
-       return coleccion.count_documents({})
+En este ejercicio, contamos el número de documentos en una colección de MongoDB. La función `contar_documentos` devuelve el número total de documentos en la colección.
 
-   # Ejemplo de uso
-   client = MongoClient("mongodb://localhost:27017/")
-   db = client["mi_base_de_datos"]
-   coleccion = db["mi_coleccion"]
-   coleccion.insert_many([{"nombre": "Alice"}, {"nombre": "Bob"}])
-   print(contar_documentos(coleccion))
-   ```
+```python
+from pymongo import MongoClient
+
+def contar_documentos(coleccion):
+    return coleccion.count_documents({})
+
+# Ejemplo de uso
+client = MongoClient("mongodb://localhost:27017/")
+db = client["mi_base_de_datos"]
+coleccion = db["mi_coleccion"]
+coleccion.insert_many([{"nombre": "Alice"}, {"nombre": "Bob"}])
+print(contar_documentos(coleccion))
+```
 
 10. **Implementar una función para listar archivos en un directorio de HDFS usando Pydoop.**
-    ```python
-    import pydoop.hdfs as hdfs
 
-    def listar_archivos(directorio):
-        return hdfs.ls(directorio)
+Este ejercicio muestra cómo listar archivos en un directorio de HDFS. La función `listar_archivos` devuelve una lista de archivos en el directorio especificado.
 
-    # Ejemplo de uso
-    print(listar_archivos('/mi_directorio'))
-    ```
+```python
+import pydoop.hdfs as hdfs
+
+def listar_archivos(directorio):
+    return hdfs.ls(directorio)
+
+# Ejemplo de uso
+print(listar_archivos('/mi_directorio'))
+```
 
 11. **Implementar una función para crear una colección en MongoDB y añadir documentos.**
-    ```python
-    from pymongo import MongoClient
 
-    def crear_coleccion_y_agregar_documentos(nombre_bd, nombre_coleccion, documentos):
-        client = MongoClient("mongodb://localhost:27017/")
-        db = client[nombre_bd]
-        coleccion = db[nombre_coleccion]
-        coleccion.insert_many(documentos)
+En este ejercicio, creamos una colección en MongoDB y añadimos múltiples documentos. La función `crear_coleccion_y_agregar_documentos` realiza esta tarea.
 
-    # Ejemplo de uso
-    crear_coleccion_y_agregar_documentos("mi_base_de_datos", "mi_coleccion", [{"nombre": "Alice"}, {"nombre": "Bob"}])
-    ```
+```python
+from pymongo import MongoClient
+
+def crear_coleccion_y_agregar_documentos(nombre_bd, nombre_coleccion, documentos):
+    client = MongoClient("mongodb://localhost:27017/")
+    db = client[nombre_bd]
+    coleccion = db[nombre_coleccion]
+    coleccion.insert_many(documentos)
+
+# Ejemplo de uso
+crear_coleccion_y_agregar_documentos("mi_base_de_datos", "mi_coleccion", [{"nombre": "Alice"}, {"nombre": "Bob"}])
+```
 
 12. **Implementar una función para actualizar documentos en una colección de MongoDB.**
-    ```python
-    from pymongo import MongoClient
 
-    def actualizar_documento(coleccion, filtro, actualizacion):
-        coleccion.update_one(filtro, {"$set": actualizacion})
+Este ejercicio muestra cómo actualizar documentos en una colección de MongoDB. La función `actualizar_documento` modifica los documentos que coinciden con el filtro proporcionado.
 
-    # Ejemplo de uso
-    client = MongoClient("mongodb://localhost:27017/")
-    db = client["mi_base_de_datos"]
-    coleccion = db["mi_coleccion"]
-    coleccion.insert_one({"nombre": "Alice", "edad": 30})
-    actualizar_documento(coleccion, {"nombre": "Alice"}, {"edad": 31})
-    ```
+```python
+from pymongo import MongoClient
+
+def actualizar_documento(coleccion, filtro, actualizacion):
+    coleccion.update_one(filtro, {"$set": actualizacion})
+
+# Ejemplo de uso
+client = MongoClient("mongodb://localhost:27017/")
+db = client["mi_base_de_datos"]
+coleccion = db["mi_coleccion"]
+coleccion.insert_one({"nombre": "Alice", "edad": 30})
+actualizar_documento(coleccion, {"nombre": "Alice"}, {"edad": 31})
+```
 
 13. **Implementar una función para mover archivos dentro de HDFS usando Pydoop.**
-    ```python
-    import pydoop.hdfs as hdfs
 
-    def mover_archivo(ruta_origen, ruta_destino):
-        hdfs.move(ruta_origen, ruta_destino)
+En este ejercicio, movemos un archivo dentro de HDFS. La función `mover_archivo` cambia la ubicación del archivo en el sistema de archivos distribuido.
 
-    # Ejemplo de uso
-    mover_archivo('/mi_directorio/mi_archivo.txt', '/otro_directorio/mi_archivo.txt')
-    ```
+```python
+import pydoop.hdfs as hdfs
+
+def mover_archivo(ruta_origen, ruta_destino):
+    hdfs.move(ruta_origen, ruta_destino)
+
+# Ejemplo de uso
+mover_archivo('/mi_directorio/mi_archivo.txt', '/otro_directorio/mi_archivo.txt')
+```
 
 14. **Implementar una función para borrar un archivo en HDFS usando Pydoop.**
-    ```python
-    import pydoop.hdfs as hdfs
 
-    def borrar_archivo(ruta):
-        hdfs.rmr(ruta)
+Este ejercicio muestra cómo borrar un archivo en HDFS. La función `borrar_archivo` elimina el archivo especificado del sistema de archivos distribuido.
 
-    # Ejemplo de uso
-    borrar_archivo('/mi_directorio/mi_archivo.txt')
-    ```
+```python
+import pydoop.hdfs as hdfs
+
+def borrar_archivo(ruta):
+    hdfs.rmr(ruta)
+
+#
+
+ Ejemplo de uso
+borrar_archivo('/mi_directorio/mi_archivo.txt')
+```
 
 15. **Implementar una función para obtener estadísticas de un archivo en HDFS usando Pydoop.**
-    ```python
-    import pydoop.hdfs as hdfs
 
-    def obtener_estadisticas_archivo(ruta):
-        return hdfs.path.info(ruta)
+En este ejercicio, obtenemos estadísticas de un archivo en HDFS. La función `obtener_estadisticas_archivo` devuelve información detallada sobre el archivo especificado.
 
-    # Ejemplo de uso
-    print(obtener_estadisticas_archivo('/mi_directorio/mi_archivo.txt'))
-    ```
+```python
+import pydoop.hdfs as hdfs
+
+def obtener_estadisticas_archivo(ruta):
+    return hdfs.path.info(ruta)
+
+# Ejemplo de uso
+print(obtener_estadisticas_archivo('/mi_directorio/mi_archivo.txt'))
+```
+
+Estas descripciones y ejemplos ayudan a entender el propósito y funcionamiento de cada código, proporcionando una base práctica para aplicar conceptos de algoritmos y estructuras de datos distribuidos.
+
 
 ---
 

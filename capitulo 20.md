@@ -671,300 +671,322 @@ print(X_pca)
 
 Este ejercicio muestra cómo aplicar PCA para reducir la dimensionalidad de un conjunto de datos, lo que puede ser útil para visualizar datos en espacios de menor dimensión o para preprocesamiento antes de aplicar otros algoritmos de aprendizaje automático.
 
-====================================================
-
-10. **Construir un modelo de clasificación con Naive Bayes en Scikit-learn.**
-    ```python
-    from sklearn.naive_bayes import GaussianNB
-    from sklearn.model_selection import train_test_split
-    from sklearn.metrics import accuracy_score
-
-    # Datos de ejemplo
-    X = [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6]]
-    y = [0, 1, 0, 1, 0]
-
-    # Dividir los datos en conjuntos de entrenamiento y prueba
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
-
-    # Crear y entrenar el modelo Naive Bayes
-    modelo = GaussianNB()
-    modelo.fit(X_train, y_train)
-
-    # Realizar predicciones
-    predicciones = modelo.predict(X_test)
-
-    # Evaluar el modelo
-    exactitud = accuracy_score(y_test, predicciones)
-    print(f'Exactitud: {exactitud}')
-    ```
-
-11. **Implementar una red neuronal convolucional simple con Keras.**
-    ```python
-    from tensorflow.keras.models import Sequential
-    from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
-    import numpy as np
-
-    # Crear datos de ejemplo
-    X = np.random.rand(100, 28, 28, 1)
-    y = np.random.randint(2, size=(100, 1))
-
-    # Crear el modelo de la red neuronal convolucional
-    modelo = Sequential()
-    modelo.add(Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
-    modelo.add(MaxPooling2D((2, 2)))
-    modelo.add(Flatten())
-    modelo.add(Dense(10, activation='relu'))
-    modelo.add(Dense(1, activation='sigmoid'))
 
-    # Compilar el modelo
-    modelo.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-
-    # Entrenar el modelo
-    modelo.fit(X, y, epochs=10, verbose=0)
-
-    # Evaluar el modelo
-    scores = modelo.evaluate(X, y)
-    print(f'Exactitud: {scores[1]}')
-    ```
 
-12. **Realizar una búsqueda de hiperparámetros con GridSearchCV en Scikit-learn.**
-    ```python
-    from sklearn.model_selection import GridSearchCV
-    from sklearn.svm import SVC
+### Ejercicio 10: Construir un Modelo de Clasificación con Naive Bayes en Scikit-learn
 
-    # Datos de ejemplo
-    X = [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6]]
-    y = [0, 1, 0, 1, 0]
+**Descripción**: Este ejercicio muestra cómo construir y evaluar un modelo de clasificación utilizando el algoritmo de Naive Bayes Gaussiano (GaussianNB) en Scikit-learn. Naive Bayes es un algoritmo de clasificación basado en el teorema de Bayes y es especialmente útil para problemas de clasificación binaria y multiclase.
 
-    # Crear el modelo SVM
-    modelo = SVC()
+```python
+from sklearn.naive_bayes import GaussianNB
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
-    # Definir los parámetros para la búsqueda
-    parametros = {'kernel': ('linear', 'rbf'), 'C': [1, 10]}
+# Datos de ejemplo
+X = [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6]]
+y = [0, 1, 0, 1, 0]
 
-    # Crear el objeto GridSearchCV
-    grid_search = GridSearchCV(modelo, parametros)
+# Dividir los datos en conjuntos de entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
-    # Ajustar el modelo
-    grid_search.fit(X, y)
+# Crear y entrenar el modelo Naive Bayes
+modelo = GaussianNB()
+modelo.fit(X_train, y_train)
 
-    # Mostrar los mejores parámetros
-    print(f'Mejor parámetro: {grid_search.best_params_}')
-    ```
+# Realizar predicciones
+predicciones = modelo.predict(X_test)
 
-13. **Implementar un algoritmo de k-means clustering en Scikit-learn.**
-    ```python
-    from sklearn.cluster import KMeans
-    import numpy as np
-
-    # Crear datos de ejemplo
-    X = np.array([[1, 2], [1, 4], [1, 0], [10, 2], [10, 4], [10, 0]])
+# Evaluar el modelo
+exactitud = accuracy_score(y_test, predicciones)
+print(f'Exactitud: {exactitud}')
+```
 
-    # Crear y ajustar el modelo k-means
-    kmeans = KMeans(n_clusters=2, random_state=0).fit(X)
+**Explicación del Código:**
 
-    # Mostrar las etiquetas de los clústeres
-    print(kmeans.labels_)
-
-    # Mostrar los centros de los clústeres
-    print(kmeans.cluster_centers_)
-    ```
-
-14. **Implementar una regresión logística para clasificación binaria en Scikit-learn.**
-    ```python
-    from sklearn.linear_model import LogisticRegression
-    from sklearn.model_selection import train_test_split
-    from sklearn.metrics import accuracy_score
-
-    # Datos de ejemplo
-    X = [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6]]
-    y = [0, 1, 0, 1, 0]
-
-    # Dividir los datos en conjuntos de entrenamiento y prueba
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
-
-    # Crear y entrenar el modelo de regresión logística
-    modelo = LogisticRegression()
-    modelo.fit(X_train, y_train)
-
-    # Realizar predicciones
-    predicciones = modelo.predict(X_test)
-
-    # Evaluar el modelo
-    exactitud = accuracy_score(y_test, predicciones)
-    print(f'Exactitud: {exactitud}')
-    ```
-
-15. **Construir un modelo de árboles de decisión en Scikit-learn.**
-    ```python
-    from sklearn.tree import DecisionTreeClassifier
-    from sklearn.model_selection import train_test_split
-    from sklearn.metrics import accuracy_score
-
-    # Datos de ejemplo
-    X = [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6]]
-    y = [0, 1, 0, 1, 0]
-
-    # Dividir los datos en conjuntos de entrenamiento y prueba
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
-
-    # Crear y entrenar el modelo de árbol de decisión
-    modelo = DecisionTreeClassifier()
-    modelo.fit(X_train, y_train)
-
-    # Realizar predicciones
-    predicciones = modelo.predict(X_test)
-
-    # Evaluar el modelo
-    exactitud = accuracy_score(y_test, predicciones)
-    print(f'Exactitud: {exactitud}')
-    ```
-
-## Examen Final del Capítulo
-
-A continuación se presentan 15 preguntas de selección múltiple diseñadas para evaluar la comprensión de los conceptos discutidos en este capítulo. Cada pregunta incluye la respuesta correcta y una justificación.
-
-1. **¿Qué biblioteca de Python es ideal para el cálculo de matrices y álgebra lineal?**
-   - a) Pandas
-   - b) TensorFlow
-   - c) NumPy
-   - d) Matplotlib
-
-   **Respuesta correcta:** c) Num
-
-Py
-   **Justificación:** NumPy es una biblioteca de Python utilizada para el cálculo de matrices y álgebra lineal, ofreciendo herramientas poderosas para estas operaciones.
-
-2. **¿Qué función de Pandas se utiliza para leer un archivo CSV en un DataFrame?**
-   - a) read_csv()
-   - b) read_file()
-   - c) load_csv()
-   - d) open_csv()
-
-   **Respuesta correcta:** a) read_csv()
-   **Justificación:** La función read_csv() de Pandas se utiliza para leer un archivo CSV y convertirlo en un DataFrame.
-
-3. **¿Cuál de las siguientes bibliotecas se utiliza para crear redes neuronales en Python?**
-   - a) Matplotlib
-   - b) Keras
-   - c) Seaborn
-   - d) Scikit-learn
-
-   **Respuesta correcta:** b) Keras
-   **Justificación:** Keras es una biblioteca de Python utilizada para crear y entrenar redes neuronales de manera sencilla e intuitiva.
-
-4. **¿Qué método de Scikit-learn se utiliza para dividir los datos en conjuntos de entrenamiento y prueba?**
-   - a) train_test_split()
-   - b) split_data()
-   - c) divide_data()
-   - d) data_split()
-
-   **Respuesta correcta:** a) train_test_split()
-   **Justificación:** El método train_test_split() de Scikit-learn se utiliza para dividir los datos en conjuntos de entrenamiento y prueba.
-
-5. **¿Cuál de las siguientes opciones es una biblioteca de Python para el procesamiento de lenguaje natural?**
-   - a) Pandas
-   - b) Matplotlib
-   - c) NLTK
-   - d) NumPy
-
-   **Respuesta correcta:** c) NLTK
-   **Justificación:** NLTK (Natural Language Toolkit) es una biblioteca de Python para el procesamiento de lenguaje natural.
-
-6. **¿Qué función de Matplotlib se utiliza para crear un gráfico de dispersión?**
-   - a) plot()
-   - b) scatter()
-   - c) bar()
-   - d) hist()
-
-   **Respuesta correcta:** b) scatter()
-   **Justificación:** La función scatter() de Matplotlib se utiliza para crear gráficos de dispersión.
-
-7. **¿Qué biblioteca se utiliza para trabajar con grandes volúmenes de datos en tiempo real en Python?**
-   - a) TensorFlow
-   - b) Apache Kafka
-   - c) Scikit-learn
-   - d) Seaborn
-
-   **Respuesta correcta:** b) Apache Kafka
-   **Justificación:** Apache Kafka es una plataforma de streaming distribuido que se utiliza para trabajar con grandes volúmenes de datos en tiempo real.
-
-8. **¿Cuál de las siguientes opciones es un algoritmo de agrupamiento (clustering)?**
-   - a) Regresión logística
-   - b) K-means
-   - c) Redes neuronales
-   - d) Árboles de decisión
-
-   **Respuesta correcta:** b) K-means
-   **Justificación:** K-means es un algoritmo de agrupamiento (clustering) utilizado para agrupar datos en diferentes clústeres.
-
-9. **¿Qué biblioteca de Python se utiliza para trabajar con datos tabulares y series temporales?**
-   - a) NumPy
-   - b) Pandas
-   - c) Matplotlib
-   - d) Scikit-learn
-
-   **Respuesta correcta:** b) Pandas
-   **Justificación:** Pandas es una biblioteca de Python utilizada para trabajar con datos tabulares y series temporales.
-
-10. **¿Cuál de las siguientes bibliotecas se utiliza para el análisis y visualización de datos?**
-    - a) TensorFlow
-    - b) PyTorch
-    - c) Matplotlib
-    - d) Keras
-
-    **Respuesta correcta:** c) Matplotlib
-    **Justificación:** Matplotlib es una biblioteca de Python utilizada para el análisis y visualización de datos mediante gráficos y figuras.
-
-11. **¿Qué biblioteca de Python es conocida por su uso en el aprendizaje profundo (deep learning)?**
-    - a) Scikit-learn
-    - b) TensorFlow
-    - c) Pandas
-    - d) NumPy
-
-    **Respuesta correcta:** b) TensorFlow
-    **Justificación:** TensorFlow es una biblioteca de Python conocida por su uso en el aprendizaje profundo (deep learning) y el entrenamiento de redes neuronales complejas.
-
-12. **¿Qué función de Scikit-learn se utiliza para realizar una búsqueda de hiperparámetros?**
-    - a) GridSearchCV
-    - b) HyperparameterSearch
-    - c) ParameterTuning
-    - d) ModelSelection
-
-    **Respuesta correcta:** a) GridSearchCV
-    **Justificación:** GridSearchCV es una función de Scikit-learn que se utiliza para realizar una búsqueda exhaustiva de los mejores hiperparámetros para un modelo.
-
-13. **¿Cuál de las siguientes opciones es una técnica de reducción de dimensionalidad?**
-    - a) Regresión lineal
-    - b) K-means
-    - c) PCA (Análisis de Componentes Principales)
-    - d) Árboles de decisión
-
-    **Respuesta correcta:** c) PCA (Análisis de Componentes Principales)
-    **Justificación:** PCA (Análisis de Componentes Principales) es una técnica de reducción de dimensionalidad que transforma los datos a un espacio de menor dimensión.
-
-14. **¿Qué biblioteca de Python proporciona herramientas para la manipulación y análisis de datos estructurados (tabulares)?**
-    - a) TensorFlow
-    - b) Pandas
-    - c) Seaborn
-    - d) Keras
-
-    **Respuesta correcta:** b) Pandas
-    **Justificación:** Pandas es una biblioteca de Python que proporciona herramientas para la manipulación y análisis de datos estructurados (tabulares), como DataFrames.
-
-15. **¿Qué biblioteca de Python se utiliza para el procesamiento y análisis de texto?**
-    - a) NumPy
-    - b) TensorFlow
-    - c) NLTK
-    - d) Pandas
-
-    **Respuesta correcta:** c) NLTK
-    **Justificación:** NLTK (Natural Language Toolkit) es una biblioteca de Python utilizada para el procesamiento y análisis de texto, especialmente en el contexto del procesamiento de lenguaje natural (NLP).
-
-## Cierre del Capítulo
-
-En este capítulo, hemos explorado una amplia gama de herramientas y bibliotecas complementarias que son esenciales para el desarrollo y análisis de proyectos de Machine Learning y ciencia de datos. Desde el manejo de datos con Pandas y la creación de gráficos con Matplotlib hasta la construcción de modelos de redes neuronales con TensorFlow y PyTorch, cada sección ha proporcionado una comprensión integral y práctica de estas tecnologías.
-
-Hemos demostrado cómo utilizar estas herramientas para llevar a cabo tareas específicas mediante ejemplos detallados y explicaciones claras. Los ejercicios propuestos han permitido a los lectores aplicar estos conocimientos de manera práctica, reforzando su comprensión y habilidades en el uso de estas bibliotecas.
-
-Al dominar estas herramientas y bibliotecas, los programadores y científicos de datos pueden abordar de manera efectiva los desafíos complejos que surgen en el desarrollo de proyectos de Machine Learning y análisis de datos. La capacidad de seleccionar y aplicar la herramienta adecuada para cada tarea es crucial para optimizar el rendimiento y la eficiencia de sus proyectos, asegurando resultados precisos y valiosos en el mundo real.
+1. **Importación de Módulos**:
+   - `GaussianNB` de `sklearn.naive_bayes` se utiliza para crear el modelo de Naive Bayes.
+   - `train_test_split` de `sklearn.model_selection` se usa para dividir los datos en conjuntos de entrenamiento y prueba.
+   - `accuracy_score` de `sklearn.metrics` se utiliza para calcular la precisión del modelo.
+
+2. **Datos de Ejemplo**:
+   - `X` es una lista de listas que representa las características de los datos.
+   - `y` es una lista que contiene las etiquetas correspondientes a cada conjunto de características.
+
+3. **División de Datos**:
+   - `train_test_split` divide los datos en conjuntos de entrenamiento y prueba. `test_size=0.2` indica que el 20% de los datos se usarán para pruebas y el 80% para entrenamiento. `random_state=0` asegura que la división sea reproducible.
+
+4. **Creación y Entrenamiento del Modelo**:
+   - Se crea una instancia del modelo `GaussianNB`.
+   - `fit(X_train, y_train)` entrena el modelo utilizando los datos de entrenamiento.
+
+5. **Realización de Predicciones**:
+   - `predict(X_test)` genera predicciones utilizando los datos de prueba.
+
+6. **Evaluación del Modelo**:
+   - `accuracy_score(y_test, predicciones)` calcula la precisión del modelo comparando las etiquetas verdaderas con las predicciones.
+   - Se imprime la precisión del modelo.
+
+Este ejercicio demuestra cómo utilizar Scikit-learn para construir, entrenar y evaluar un modelo de clasificación utilizando el algoritmo de Naive Bayes Gaussiano.
+
+
+
+### Ejercicio 11: Implementar una Red Neuronal Convolucional Simple con Keras
+
+**Descripción**: Este ejercicio muestra cómo construir, entrenar y evaluar una red neuronal convolucional (CNN) simple utilizando la biblioteca Keras en TensorFlow. Las CNN son especialmente útiles para tareas de procesamiento de imágenes debido a su capacidad para captar características espaciales y patrones en los datos de entrada.
+
+```python
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
+import numpy as np
+
+# Crear datos de ejemplo
+X = np.random.rand(100, 28, 28, 1)  # 100 imágenes de 28x28 píxeles en escala de grises
+y = np.random.randint(2, size=(100, 1))  # 100 etiquetas binarias
+
+# Crear el modelo de la red neuronal convolucional
+modelo = Sequential()
+modelo.add(Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
+modelo.add(MaxPooling2D((2, 2)))
+modelo.add(Flatten())
+modelo.add(Dense(10, activation='relu'))
+modelo.add(Dense(1, activation='sigmoid'))
+
+# Compilar el modelo
+modelo.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+
+# Entrenar el modelo
+modelo.fit(X, y, epochs=10, verbose=0)
+
+# Evaluar el modelo
+scores = modelo.evaluate(X, y)
+print(f'Exactitud: {scores[1]}')
+```
+
+**Explicación del Código:**
+
+1. **Importación de Módulos**:
+   - `Sequential` de `tensorflow.keras.models` se utiliza para crear un modelo secuencial, que es una pila lineal de capas.
+   - `Conv2D`, `MaxPooling2D`, `Flatten`, y `Dense` de `tensorflow.keras.layers` se utilizan para construir las capas de la red neuronal convolucional.
+   - `numpy` se usa para generar datos de ejemplo.
+
+2. **Creación de Datos de Ejemplo**:
+   - `X` es un arreglo de NumPy con forma `(100, 28, 28, 1)`, que representa 100 imágenes en escala de grises de 28x28 píxeles.
+   - `y` es un arreglo de NumPy con 100 etiquetas binarias (0 o 1).
+
+3. **Creación del Modelo de la Red Neuronal Convolucional**:
+   - `Sequential()` crea un modelo secuencial.
+   - `Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1))` añade una capa convolucional con 32 filtros de tamaño 3x3, activación ReLU, y una forma de entrada de 28x28x1.
+   - `MaxPooling2D((2, 2))` añade una capa de pooling con ventanas de 2x2 para reducir la dimensionalidad espacial.
+   - `Flatten()` aplana la entrada para conectarla a una capa densa.
+   - `Dense(10, activation='relu')` añade una capa densa con 10 neuronas y activación ReLU.
+   - `Dense(1, activation='sigmoid')` añade una capa de salida con una neurona y activación sigmoide para la clasificación binaria.
+
+4. **Compilación del Modelo**:
+   - `compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])` configura el modelo para entrenarse utilizando la pérdida de entropía binaria, el optimizador Adam, y la métrica de exactitud.
+
+5. **Entrenamiento del Modelo**:
+   - `fit(X, y, epochs=10, verbose=0)` entrena el modelo durante 10 épocas con los datos de entrada `X` y las etiquetas `y`.
+
+6. **Evaluación del Modelo**:
+   - `evaluate(X, y)` evalúa el modelo utilizando los mismos datos de entrenamiento y devuelve la pérdida y la exactitud.
+   - `print(f'Exactitud: {scores[1]}')` imprime la exactitud del modelo.
+
+Este ejercicio demuestra cómo implementar una red neuronal convolucional básica para la clasificación de imágenes en Keras, proporcionando una base sólida para proyectos más avanzados en visión por computadora.
+
+
+
+### Ejercicio 12: Realizar una Búsqueda de Hiperparámetros con GridSearchCV en Scikit-learn
+
+**Descripción**: Este ejercicio muestra cómo utilizar `GridSearchCV` en Scikit-learn para encontrar los mejores hiperparámetros de un modelo de Máquina de Soporte Vectorial (SVM). GridSearchCV es una técnica que permite automatizar el proceso de ajuste de hiperparámetros probando todas las combinaciones posibles y seleccionando la mejor en función de una métrica de evaluación.
+
+```python
+from sklearn.model_selection import GridSearchCV
+from sklearn.svm import SVC
+
+# Datos de ejemplo
+X = [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6]]
+y = [0, 1, 0, 1, 0]
+
+# Crear el modelo SVM
+modelo = SVC()
+
+# Definir los parámetros para la búsqueda
+parametros = {'kernel': ('linear', 'rbf'), 'C': [1, 10]}
+
+# Crear el objeto GridSearchCV
+grid_search = GridSearchCV(modelo, parametros)
+
+# Ajustar el modelo
+grid_search.fit(X, y)
+
+# Mostrar los mejores parámetros
+print(f'Mejor parámetro: {grid_search.best_params_}')
+```
+
+**Explicación del Código:**
+
+1. **Importación de Módulos**:
+   - `GridSearchCV` de `sklearn.model_selection` se utiliza para realizar la búsqueda de hiperparámetros.
+   - `SVC` de `sklearn.svm` se utiliza para crear el modelo de Máquina de Soporte Vectorial (SVM).
+
+2. **Datos de Ejemplo**:
+   - `X` es una lista de listas que contiene los datos de entrada.
+   - `y` es una lista que contiene las etiquetas correspondientes a los datos de entrada.
+
+3. **Creación del Modelo SVM**:
+   - `SVC()` crea un modelo de SVM sin especificar ningún parámetro.
+
+4. **Definición de los Parámetros para la Búsqueda**:
+   - `parametros` es un diccionario que define los hiperparámetros a probar. En este caso, se prueban dos tipos de kernel (`linear` y `rbf`) y dos valores para el parámetro `C` (1 y 10).
+
+5. **Creación del Objeto GridSearchCV**:
+   - `GridSearchCV(modelo, parametros)` crea un objeto GridSearchCV que realiza una búsqueda exhaustiva de los mejores hiperparámetros para el modelo dado.
+
+6. **Ajuste del Modelo**:
+   - `grid_search.fit(X, y)` ajusta el modelo a los datos de entrada `X` y las etiquetas `y`, probando todas las combinaciones de hiperparámetros definidas.
+
+7. **Mostrar los Mejores Parámetros**:
+   - `print(f'Mejor parámetro: {grid_search.best_params_}')` imprime los mejores parámetros encontrados durante la búsqueda.
+
+Este ejercicio demuestra cómo utilizar GridSearchCV para optimizar los hiperparámetros de un modelo de SVM en Scikit-learn, lo que puede mejorar significativamente el rendimiento del modelo al encontrar la configuración óptima de parámetros.
+
+
+### Ejercicio 13: Implementar un Algoritmo de K-Means Clustering en Scikit-learn
+
+**Descripción**: Este ejercicio muestra cómo utilizar el algoritmo de k-means clustering en Scikit-learn para agrupar datos en clústeres. K-means clustering es una técnica de aprendizaje no supervisado que particiona los datos en k clústeres diferentes, donde cada punto de datos pertenece al clúster con la media más cercana.
+
+**Código Explicado**:
+1. **Importación de Bibliotecas**: Se importan `KMeans` de Scikit-learn y `numpy` para manejar los datos numéricos.
+2. **Creación de Datos de Ejemplo**: Se crea un array `X` con datos bidimensionales de ejemplo.
+3. **Creación y Ajuste del Modelo**: Se crea un modelo de k-means con `n_clusters=2` (es decir, dos clústeres) y se ajusta a los datos `X`.
+4. **Mostrar Etiquetas de Clústeres**: Se imprimen las etiquetas de los clústeres asignados a cada punto de datos.
+5. **Mostrar Centros de Clústeres**: Se imprimen las coordenadas de los centros de los clústeres.
+
+**Código**:
+```python
+from sklearn.cluster import KMeans
+import numpy as np
+
+# Crear datos de ejemplo
+X = np.array([[1, 2], [1, 4], [1, 0], [10, 2], [10, 4], [10, 0]])
+
+# Crear y ajustar el modelo k-means
+kmeans = KMeans(n_clusters=2, random_state=0).fit(X)
+
+# Mostrar las etiquetas de los clústeres
+print(kmeans.labels_)
+
+# Mostrar los centros de los clústeres
+print(kmeans.cluster_centers_)
+```
+
+### Ejercicio 14: Implementar una Regresión Logística para Clasificación Binaria en Scikit-learn
+
+**Descripción**: Este ejercicio muestra cómo utilizar la regresión logística para realizar una clasificación binaria con la biblioteca Scikit-learn. La regresión logística es un algoritmo de aprendizaje supervisado que se utiliza para predecir la probabilidad de que una observación pertenezca a una de dos clases posibles.
+
+**Código Explicado**:
+1. **Importación de Bibliotecas**: Se importan `LogisticRegression` de Scikit-learn para la regresión logística, `train_test_split` para dividir los datos en conjuntos de entrenamiento y prueba, y `accuracy_score` para evaluar el modelo.
+2. **Creación de Datos de Ejemplo**: Se define un conjunto de datos `X` con características y `y` con etiquetas binarias.
+3. **División de los Datos**: Los datos se dividen en conjuntos de entrenamiento (80%) y prueba (20%) utilizando `train_test_split`.
+4. **Creación y Entrenamiento del Modelo**: Se crea un modelo de regresión logística y se entrena con los datos de entrenamiento.
+5. **Realización de Predicciones**: El modelo se utiliza para predecir las etiquetas de los datos de prueba.
+6. **Evaluación del Modelo**: Se calcula la exactitud del modelo comparando las predicciones con las etiquetas reales de los datos de prueba.
+
+**Código**:
+```python
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Datos de ejemplo
+X = [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6]]
+y = [0, 1, 0, 1, 0]
+
+# Dividir los datos en conjuntos de entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+# Crear y entrenar el modelo de regresión logística
+modelo = LogisticRegression()
+modelo.fit(X_train, y_train)
+
+# Realizar predicciones
+predicciones = modelo.predict(X_test)
+
+# Evaluar el modelo
+exactitud = accuracy_score(y_test, predicciones)
+print(f'Exactitud: {exactitud}')
+```
+
+### Ejercicio 15: Construir un Modelo de Árboles de Decisión en Scikit-learn
+
+**Descripción**: Este ejercicio demuestra cómo utilizar un modelo de árboles de decisión para realizar una clasificación binaria con la biblioteca Scikit-learn. Los árboles de decisión son algoritmos de aprendizaje supervisado utilizados para tareas de clasificación y regresión, que funcionan dividiendo el conjunto de datos en subconjuntos basados en las características más importantes.
+
+**Código Explicado**:
+1. **Importación de Bibliotecas**: Se importan `DecisionTreeClassifier` de Scikit-learn para construir el modelo de árbol de decisión, `train_test_split` para dividir los datos en conjuntos de entrenamiento y prueba, y `accuracy_score` para evaluar el modelo.
+2. **Creación de Datos de Ejemplo**: Se define un conjunto de datos `X` con características y `y` con etiquetas binarias.
+3. **División de los Datos**: Los datos se dividen en conjuntos de entrenamiento (80%) y prueba (20%) utilizando `train_test_split`.
+4. **Creación y Entrenamiento del Modelo**: Se crea un modelo de árbol de decisión y se entrena con los datos de entrenamiento.
+5. **Realización de Predicciones**: El modelo se utiliza para predecir las etiquetas de los datos de prueba.
+6. **Evaluación del Modelo**: Se calcula la exactitud del modelo comparando las predicciones con las etiquetas reales de los datos de prueba.
+
+**Código**:
+```python
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Datos de ejemplo
+X = [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6]]
+y = [0, 1, 0, 1, 0]
+
+# Dividir los datos en conjuntos de entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+# Crear y entrenar el modelo de árbol de decisión
+modelo = DecisionTreeClassifier()
+modelo.fit(X_train, y_train)
+
+# Realizar predicciones
+predicciones = modelo.predict(X_test)
+
+# Evaluar el modelo
+exactitud = accuracy_score(y_test, predicciones)
+print(f'Exactitud: {exactitud}')
+```
+
+
+
+
+### Cierre del Libro
+
+En este libro, "Algoritmos y Estructuras de Datos con Python", hemos recorrido un extenso y apasionante viaje a través de los fundamentos y avanzadas técnicas que sustentan la programación y el desarrollo de software. Desde los conceptos básicos hasta los algoritmos más sofisticados y las estructuras de datos esenciales, cada capítulo ha sido diseñado para proporcionar una comprensión profunda y aplicable de estos temas cruciales.
+
+#### Reflexión sobre los Algoritmos y las Estructuras de Datos
+
+Los algoritmos y las estructuras de datos son la columna vertebral de la informática. Nos permiten desarrollar soluciones eficientes y efectivas para una amplia variedad de problemas, desde los más simples hasta los más complejos. A lo largo del libro, hemos explorado una amplia gama de algoritmos, incluyendo los de búsqueda, ordenamiento y grafos, así como estructuras de datos fundamentales como listas enlazadas, pilas, colas, árboles y grafos. La comprensión y el dominio de estos conceptos son vitales para cualquier programador que aspire a crear software robusto y eficiente.
+
+#### Python como Herramienta Versátil
+
+Python ha sido nuestra herramienta de elección debido a su simplicidad y potencia. Su sintaxis clara y sus bibliotecas extensas lo hacen ideal tanto para principiantes como para desarrolladores experimentados. A lo largo de este libro, hemos demostrado cómo Python puede ser utilizado para implementar una variedad de algoritmos y estructuras de datos, facilitando el aprendizaje y la aplicación práctica de estos conceptos.
+
+#### Importancia de las Buenas Prácticas de Programación
+
+Además de los fundamentos algorítmicos y estructurales, hemos enfatizado la importancia de las buenas prácticas de programación. La escritura de código limpio, mantenible y eficiente no solo mejora la calidad del software, sino que también facilita la colaboración y la escalabilidad de los proyectos. Hemos discutido patrones de diseño, técnicas de prueba y depuración, así como estrategias de optimización de código para asegurar que los lectores estén bien equipados para enfrentar desafíos en el desarrollo de software.
+
+#### Aplicaciones Prácticas y Proyectos Reales
+
+Para consolidar el conocimiento, hemos incluido una serie de ejercicios prácticos y proyectos reales. Desde la implementación de sistemas de recomendación y motores de búsqueda hasta el análisis de datos en tiempo real, estos proyectos no solo fortalecen la comprensión teórica, sino que también proporcionan habilidades prácticas valiosas en el mundo real. 
+
+#### Mirando Hacia el Futuro
+
+El campo de la informática está en constante evolución, y los algoritmos y estructuras de datos continúan siendo áreas de investigación activa y desarrollo. Los avances en inteligencia artificial, machine learning y big data están redefiniendo lo que es posible, y los principios que hemos cubierto en este libro seguirán siendo fundamentales para enfrentar estos nuevos desafíos. Al dominar estos conceptos, los lectores están bien posicionados para aprovechar las oportunidades emergentes y contribuir al futuro de la tecnología.
+
+### Conclusión
+
+En conclusión, este libro ha sido un esfuerzo por brindar una educación completa y accesible sobre algoritmos y estructuras de datos utilizando Python. Esperamos que los lectores hayan encontrado útil esta guía y que continúen explorando y aprendiendo en su viaje como programadores y desarrolladores. El conocimiento y las habilidades adquiridas aquí son solo el comienzo; con una base sólida, cualquier meta es alcanzable.
+
+Que este libro sirva como una referencia confiable y una fuente de inspiración mientras continúas tu viaje en el fascinante mundo de la informática. ¡Buena suerte y feliz programación!
+
+---
+
+Con esta conclusión, buscamos encapsular la esencia del libro y motivar a los lectores a seguir profundizando en el estudio de la informática, utilizando los conocimientos y habilidades adquiridos para alcanzar nuevas alturas en sus carreras y proyectos personales.
